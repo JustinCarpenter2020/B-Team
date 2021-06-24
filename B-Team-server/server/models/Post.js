@@ -4,7 +4,8 @@ const Post = new Schema(
   {
     body: { type: String, required: true },
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-    likes: { type: Number, required: true, default: 0 }
+    likes: { type: Number, required: true, default: 0 },
+    imgUrl: { type: String }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 
