@@ -5,6 +5,10 @@ class CommentsService {
     return await dbContext.Comments.find({ postId: id })
   }
 
+  async getOne(id) {
+    return await dbContext.Comments.find({ _id: id })
+  }
+
   async create(body) {
     return await dbContext.Comments.create(body)
   }
