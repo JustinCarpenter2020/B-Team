@@ -1,4 +1,6 @@
 import { postsService } from '../services/PostsService'
+import { commentsService } from '../services/CommentsService'
+
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 
@@ -8,6 +10,7 @@ export class PostsController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getOne)
+      .get('/:id/comments', this.getComments)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:id', this.edit)
@@ -26,6 +29,14 @@ export class PostsController extends BaseController {
   async getOne(req, res, next) {
     try {
       res.send(await postsService.getOne(req.params.id))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getComments(req, res, next) {
+    try {
+      res.send(await commentsService.getByPostId(req.params.id))
     } catch (error) {
       next(error)
     }

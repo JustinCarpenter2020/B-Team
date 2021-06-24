@@ -3,7 +3,8 @@ import { Schema } from 'mongoose'
 const Comment = new Schema({
   body: { type: String, required: true },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-  likes: { type: Number, required: true, default: 0 }
+  postId: { type: String, required: true, ref: 'Post' },
+  commentLikes: [{ type: String, ref: 'Account' }]
 },
 { timestamps: true, toJSON: { virtuals: true } })
 
