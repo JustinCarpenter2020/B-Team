@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "B-Team-client",
+      "path": "./B-Team-client"
+    },
+    {
+      "name": "B-Team-server",
+      "path": "./B-Team-server"
+    }
+  ]
+}
