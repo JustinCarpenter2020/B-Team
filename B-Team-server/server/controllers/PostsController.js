@@ -7,11 +7,11 @@ export class PostsController extends BaseController {
     super('api/posts')
     this.router
       .get('', this.getAll)
-      // .get('/:id', this.getOne)
+      .get('/:id', this.getOne)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      // .put('/:id', this.edit)
-      // .delete('/:id', this.delete)
+      .put('/:id', this.edit)
+      .delete('/:id', this.delete)
   }
 
   async getAll(req, res, next) {
@@ -22,13 +22,13 @@ export class PostsController extends BaseController {
     }
   }
 
-  // async getOne(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async getOne(req, res, next) {
+    try {
+      res.send(await postsService.getOne(req.params.id))
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async create(req, res, next) {
     try {
@@ -40,19 +40,21 @@ export class PostsController extends BaseController {
     }
   }
 
-  // async edit(req, res, next) {
-  //   try {
+  async edit(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
+      res.send(await postsService.edit(req.body))
+    } catch (error) {
+      next(error)
+    }
+  }
 
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
-
-  // async delete(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async delete(req, res, next) {
+    try {
+      res.send(await postsService.delete(req.params.id, req.userInfo.id))
+    } catch (error) {
+      next(error)
+    }
+  }
 }
