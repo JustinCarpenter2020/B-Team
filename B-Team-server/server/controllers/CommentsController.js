@@ -9,9 +9,9 @@ export class CommentsController extends BaseController {
       .get('/:id', this.getOne)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      // .put('/:id', this.edit)
-      // .put('/:id/like', this.like)
-      // .delete('/:id', this.delete)
+      .put('/:id', this.edit)
+      .put('/:id/like', this.like)
+      .delete('/:id', this.delete)
   }
 
   async getOne(req, res, next) {
@@ -32,27 +32,30 @@ export class CommentsController extends BaseController {
     }
   }
 
-  // async edit(req, res, next) {
-  //   try {
+  async edit(req, res, next) {
+    try {
+      delete req.body.postId
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
+      res.send(await commentsService.edit(req.body))
+    } catch (error) {
+      next(error)
+    }
+  }
 
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async like(req, res, next) {
+    try {
+      res.send(await commentsService.like(req.params.id, req.userInfo.id))
+    } catch (error) {
+      next(error)
+    }
+  }
 
-  // async like(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
-
-  // async delete(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async delete(req, res, next) {
+    try {
+      res.send(await commentsService.delete(req.params.id, req.userInfo.id))
+    } catch (error) {
+      next(error)
+    }
+  }
 }
