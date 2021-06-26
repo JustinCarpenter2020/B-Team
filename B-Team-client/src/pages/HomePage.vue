@@ -21,7 +21,6 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import { AppState } from '../AppState'
 export default {
-  name: 'Home',
   setup() {
     onMounted(() => {
       postsService.getPosts()

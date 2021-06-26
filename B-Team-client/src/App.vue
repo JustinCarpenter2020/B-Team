@@ -21,5 +21,7 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
+p{
+  font-family: 'Roboto', sans-serif;
+}
 </style>
