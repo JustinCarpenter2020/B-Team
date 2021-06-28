@@ -5,17 +5,22 @@
       <h4 class="card-title">
         Trending
       </h4>
-      <p class="card-text">
-        Text
+      <p v-for="(t, index) in trending" :key="index" class="card-text">
+        {{ t }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
+  props: { trendingProp: { type: Object, required: true } },
   setup() {
-    return {}
+    return {
+      trending: computed(() => AppState.trending)
+    }
   },
   components: {}
 }

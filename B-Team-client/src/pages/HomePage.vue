@@ -20,10 +20,12 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import { AppState } from '../AppState'
+import { trendingService } from '../services/TrendingService'
 export default {
   setup() {
     onMounted(() => {
       postsService.getPosts()
+      trendingService.getTrending()
     })
     return {
       posts: computed(() => AppState.posts)

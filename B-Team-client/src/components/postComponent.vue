@@ -1,17 +1,19 @@
 <template>
   <div class="row mt-4">
     <div class="col-12">
-      <div class="card">
-        <img class="card-img-top" src="holder.js/100x180/" alt="">
-        <div class="card-body">
-          <h4 class="card-title">
-            {{ postProp.body }}
-          </h4>
-          <div class="card-img" v-if="postProp.imgUrl">
-            <img :src="postProp.imgUrl" alt="">
+      <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
+        <div class="card">
+          <img class="card-img-top" src="holder.js/100x180/" alt="">
+          <div class="card-body">
+            <h4 class="card-title">
+              {{ postProp.body }}
+            </h4>
+            <div class="card-img" v-if="postProp.imgUrl">
+              <img :src="postProp.imgUrl" alt="">
+            </div>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
