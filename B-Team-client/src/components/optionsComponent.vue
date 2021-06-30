@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-4 text-light">
+  <div class="card mt-4 text-light border-transparentWhite">
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
       <p class="text">
@@ -76,4 +76,5 @@ export default {
 .customBtn:hover{
  background: #428BCA;
         }
+
 </style>

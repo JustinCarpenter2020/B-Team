@@ -4,7 +4,7 @@
       <div class="col-md-3">
         <optionsComponent />
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 mb-4">
         <searchComponent />
         <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
       </div>

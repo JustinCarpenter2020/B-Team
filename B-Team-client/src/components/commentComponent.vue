@@ -1,7 +1,7 @@
 <template>
   <!-- //NOTE needs border between each one -->
   <div class="col-12 p-0 ">
-    <div class="card">
+    <div class="card border">
       <img class="card-img-top" src="holder.js/100x180/" alt="">
       <div class="card-body">
         <h4 class="card-title">

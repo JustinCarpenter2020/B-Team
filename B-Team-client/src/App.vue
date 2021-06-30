@@ -24,4 +24,14 @@ export default {
 p{
   font-family: 'Roboto', sans-serif;
 }
+
+.card{
+  background-color: #141d26;
+
+}
+
+  .border-transparentWhite{
+          border: solid 1px;
+          border-color: #f5f8fa48;
+        }
 </style>

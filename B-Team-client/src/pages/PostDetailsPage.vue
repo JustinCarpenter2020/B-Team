@@ -4,16 +4,16 @@
       <div class="col-md-3">
         <optionsComponent />
       </div>
-      <div class="col-md-6 mt-4 text-center">
+      <div class="col-md-6 mt-4 text-center text-white">
         <div class="row">
-          <div class="card col-12">
+          <div class="card col-12 border">
             <img class="card-img-top" src="holder.js/100x180/" alt="">
             <div class="card-body">
               <h4 class="card-title">
                 {{ post.body }}
               </h4>
               <div class="card-img" v-if="post.imgUrl">
-                <img :src="post.imgUrl" alt="">
+                <img class="img-fluid rounded" :src="post.imgUrl" alt="">
               </div>
             </div>
           </div>
@@ -55,5 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.rounded{
+  border-radius: 8%;
+}
 </style>

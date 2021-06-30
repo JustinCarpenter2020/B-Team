@@ -1,9 +1,9 @@
 <template>
-  <div class="card mt-4">
+  <div class="card mt-4 text-white border-transparentWhite">
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
       <h4 class="card-title">
-        Trending
+        Trends For You
       </h4>
       <p v-for="(t, index) in trending" :key="index" class="card-text">
         {{ t }}

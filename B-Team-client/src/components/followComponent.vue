@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-4">
+  <div class="card mt-4 text-white border-transparentWhite">
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
       <h4 class="card-title">
