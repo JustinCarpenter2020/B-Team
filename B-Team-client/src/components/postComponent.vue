@@ -32,21 +32,21 @@
             <img class="img-fluid rounded" :src="postProp.imgUrl" alt="">
           </div>
         </div>
-        <div class="row" v-if="account">
+        <div class="row" v-if="account._id">
           <div class="col-4 text-right">
-            <i class="far fa-comment"></i>
+            <i class="far fa-comment" title="comment"></i>
           </div>
           <div class="col-4 text-center">
-            <i class="fas fa-exchange-alt"></i>
+            <i class="fas fa-exchange-alt" title="share"></i>
           </div>
           <div class="col-4" v-if="!postProp.likedIds.includes(account.id)">
             <span>
-              <i class="far fa-heart" @click="like"></i> {{ postProp.likedIds.length }}
+              <i class="far fa-heart" @click="like" title="like"></i> {{ postProp.likedIds.length }}
             </span>
           </div>
           <div class="col-4" v-else>
             <span>
-              <i class="fas fa-heart" @click="like"></i> {{ postProp.likedIds.length }}
+              <i class="fas fa-heart" @click="like" title="unlike"></i> {{ postProp.likedIds.length }}
             </span>
           </div>
         </div>
@@ -60,6 +60,7 @@ import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
+import Notification from '../utils/Notification'
 export default {
   props: { postProp: { type: Object, required: true } },
   setup(props) {
@@ -75,6 +76,7 @@ export default {
       async deletePost() {
         try {
           await postsService.deletePost(props.postProp.id)
+          Notification.toast('deleted', 'success')
         } catch (error) {
           logger.error(error)
         }
@@ -90,7 +92,12 @@ export default {
   border-radius: 8%;
 }
 
+.swal-overlay {
+  background-color: rgba(43, 165, 137, 0.45);
+}
+
 .dropdown-toggle::after {
     content: none;
 }
+
 </style>

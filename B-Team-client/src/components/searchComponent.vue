@@ -1,7 +1,7 @@
 <template>
-  <div class="my-4 row">
+  <div class="my-4 row" v-if="account._id">
     <div class="col-2">
-      <div v-if="account">
+      <div>
         <img class="profilePic" :src="account.picture" alt="">
       </div>
     </div>

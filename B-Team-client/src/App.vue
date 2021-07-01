@@ -34,4 +34,9 @@ p{
           border: solid 1px;
           border-color: #f5f8fa48;
         }
+
+         .border-transparentWhiteb{
+          border-bottom: 1px solid #f5f8fa48;
+          // border-color: #f5f8fa48;
+        }
 </style>

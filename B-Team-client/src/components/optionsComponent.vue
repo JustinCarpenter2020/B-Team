@@ -3,32 +3,42 @@
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
       <p class="text">
-        Home
+        <i class="fas fa-home"></i> Home
       </p>
       <p class="text">
-        Explore
+        <i class="fas fa-hashtag"></i> Explore
       </p>
       <p class="text">
-        Notifications
+        <i class="far fa-bell"></i> Notifications
       </p>
       <p class="text">
-        Messages
+        <i class="far fa-envelope"></i> Messages
       </p>
       <p class="text">
-        BookMarks
+        <i class="far fa-bookmark"></i> BookMarks
       </p>
       <p class="text">
-        Lists
+        <i class="far fa-list-alt"></i>  Lists
+      </p>
+      <p class="text" v-if="user.picture" @click="logout">
+        <img
+          :src="user.picture"
+          alt="user photo"
+          height="40"
+          class="rounded"
+        /> Profile
       </p>
       <p class="text">
-        Profile
+        <i class="far fa-dot-circle"></i> More
       </p>
-      <p class="text">
-        More
-      </p>
-      <div class="d-flex justify-content-center mt-4">
+      <div class="d-flex justify-content-center mt-4" v-if="user.name">
         <button class=" customBtn">
           Post it
+        </button>
+      </div>
+      <div class="d-flex justify-content-center mt-4" v-else>
+        <button @click="login" class=" customBtn">
+          login
         </button>
       </div>
     </div>
@@ -36,9 +46,25 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { AuthService } from '../services/AuthService'
+import Notification from '../utils/Notification'
+
 export default {
   setup() {
-    return {}
+    return {
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        if (await Notification.confirmAction('Are you sure you want to log out', 'you will be missed', 'info', 'logout')) {
+          AuthService.logout({ returnTo: window.location.origin })
+        }
+      }
+    }
   },
   components: {}
 }
@@ -75,6 +101,12 @@ export default {
 
 .customBtn:hover{
  background: #428BCA;
+        }
+
+        .rounded{
+          border-radius: 50%;
+          height: 1em;
+          width: 1em;
         }
 
 </style>
