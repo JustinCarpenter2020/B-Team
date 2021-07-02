@@ -78,6 +78,9 @@ export default {
       account: computed(() => AppState.account),
       async createPost() {
         try {
+          if (!state.newPost.body) {
+            return window.alert('need content')
+          }
           await postsService.create(state.newPost)
         } catch (error) {
           logger.error(error)
