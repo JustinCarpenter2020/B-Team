@@ -22,37 +22,39 @@
       <i class="far fa-paper-plane fa-2x blue" title="share" @click="createPost"></i>
     </div>
     <!-- <---------------- Modals --------------------------->
-    <div>
-      <div class="modal fade"
-           id="imageModal"
-           tabindex="-1"
-           role="dialog"
-           aria-labelledby="exampleModalCenterTitle"
-           aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content dark text-white">
-            <div class="modal-header">
-              <h5 class="modal-title " id="exampleModalLongTitle">
-                Submit Img Url
-              </h5>
-              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <!-- <modalComponent>
+      <div slot="title">Add an image</div>
+    </modalComponent> -->
+
+    <div class="modal fade"
+         id="imageModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content dark text-white">
+          <div class="modal-header">
+            <div class="modal-title " id="exampleModalLongTitle">
+              Add an Image Url
             </div>
-            <div class="modal-body">
-              <input type="text"
-                     class="form-control input text-white"
-                     name=""
-                     v-model="state.newPost.imgUrl"
-                     id=""
-                     aria-describedby="helpId"
-                     placeholder="imgUrl"
-              >
-              <button type="button" class="btn btn-primary mt-3 d-flex justify-content-center" data-dismiss="modal">
-                Save
-              </button>
-            </div>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text"
+                   class="form-control input text-white"
+                   name=""
+                   v-model="state.newPost.imgUrl"
+                   id=""
+                   aria-describedby="helpId"
+                   placeholder="imgUrl"
+            >
+            <button type="button" class="btn btn-primary mt-3 d-flex justify-content-center" data-dismiss="modal">
+              Save
+            </button>
           </div>
         </div>
       </div>

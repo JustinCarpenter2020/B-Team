@@ -2,9 +2,11 @@
   <div class="card mt-4 text-light border-transparentWhite">
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
-      <p class="text">
-        <i class="fas fa-home"></i> Home
-      </p>
+      <router-link class="decor" :to="{ name: 'Home' }">
+        <p class="text">
+          <i class="fas fa-home"></i> Home
+        </p>
+      </router-link>
       <p class="text">
         <i class="fas fa-hashtag"></i> Explore
       </p>
@@ -32,8 +34,8 @@
         <i class="far fa-dot-circle"></i> More
       </p>
       <div class="d-flex justify-content-center mt-4" v-if="user.name">
-        <button class=" customBtn">
-          Post it
+        <button @click="logout" class=" customBtn">
+          Logout
         </button>
       </div>
       <div class="d-flex justify-content-center mt-4" v-else>
@@ -107,6 +109,11 @@ export default {
           border-radius: 50%;
           height: 1em;
           width: 1em;
+        }
+
+        .decor{
+          text-decoration: none;
+          color: white;
         }
 
 </style>

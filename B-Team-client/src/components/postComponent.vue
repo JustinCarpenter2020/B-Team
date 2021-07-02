@@ -23,13 +23,22 @@
               </div>
             </div>
           </div>
-          <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
-            <h4 class="card-title">
-              {{ postProp.body }}
-            </h4>
-          </router-link>
-          <div class="card-img" v-if="postProp.imgUrl">
-            <img class="img-fluid rounded" :src="postProp.imgUrl" alt="">
+          <div class="row">
+            <div class="col-2" v-if="postProp.Creator">
+              <img class="profile" :src="postProp.Creator.picture" alt="">
+            </div>
+            <div class="col-7 d-flex align-self-center">
+              <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
+                <h4 class="card-title">
+                  {{ postProp.body }}
+                </h4>
+              </router-link>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="card-img" v-if="postProp.imgUrl">
+              <img class="img-fluid rounded" :src="postProp.imgUrl" alt="">
+            </div>
           </div>
         </div>
         <div class="row" v-if="account._id">
@@ -98,6 +107,11 @@ export default {
 
 .dropdown-toggle::after {
     content: none;
+}
+
+.profile{
+  border-radius: 50%;
+  height: 3rem;
 }
 
 </style>
