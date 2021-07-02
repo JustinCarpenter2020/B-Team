@@ -43,7 +43,7 @@
         </div>
         <div class="row" v-if="account._id">
           <div class="col-4 text-right">
-            <i class="far fa-comment" title="comment"></i>
+            <i class="far fa-comment" title="comment" data-toggle="modal" :data-target="'#addCommentModal' + postProp.id"></i>
           </div>
           <div class="col-4 text-center">
             <i class="fas fa-exchange-alt" title="share"></i>
@@ -61,19 +61,64 @@
         </div>
       </div>
     </div>
+    <!-- <--------------------------------- modals ------------------->
+    <div class="modal fade"
+         :id="'addCommentModal' + postProp.id"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Add Comment
+            </h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="createComment">
+              <div class="form-group">
+                <input type="text"
+                       class="form-control input"
+                       v-model="state.newComment.body"
+                       name=""
+                       id=""
+                       aria-describedby="helpId"
+                       placeholder="Your thoughts"
+                >
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Share
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import Notification from '../utils/Notification'
+import { commentsService } from '../services/CommentsService'
+import { router } from '../router'
+import $ from 'jquery'
 export default {
   props: { postProp: { type: Object, required: true } },
   setup(props) {
+    const state = reactive({
+      newComment: {}
+    })
     return {
+      state,
       account: computed(() => AppState.account),
       async like() {
         try {
@@ -86,6 +131,16 @@ export default {
         try {
           await postsService.deletePost(props.postProp.id)
           Notification.toast('deleted', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async createComment() {
+        try {
+          state.newComment.postId = props.postProp.id
+          await commentsService.createComment(state.newComment)
+          router.push({ name: 'postDetails', params: { id: props.postProp.id } })
+          $('#addCommentModal' + props.postProp.id).modal('toggle')
         } catch (error) {
           logger.error(error)
         }
@@ -112,6 +167,17 @@ export default {
 .profile{
   border-radius: 50%;
   height: 3rem;
+}
+
+.input{
+  border-radius: 25px;
+  color: #F5F8FA;
+  background-color: #1c1f24c2 ;
+}
+
+.input::placeholder {
+  color: #F5F8FA;
+  opacity: .5;
 }
 
 </style>

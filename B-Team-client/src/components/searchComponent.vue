@@ -96,10 +96,6 @@ export default {
   height: 3rem;
 }
 
-.dark{
-    background-color: #1c1f24c2 ;
-}
-
 .input{
   border-radius: 25px;
   color: #F5F8FA;

@@ -25,6 +25,10 @@ p{
   font-family: 'Roboto', sans-serif;
 }
 
+.dark{
+    background-color: #1c1f24c2 ;
+}
+
 .card{
   background-color: #141d26;
 
