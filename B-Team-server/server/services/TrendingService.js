@@ -1,6 +1,15 @@
 import { dbContext } from '../db/DbContext'
 
 class TrendingService {
+  async getPeople() {
+    const people = []
+    for (let i = 0; i <= 2; i++) {
+      const names = await this.getNames()
+      people.push(names[0], names[1])
+    }
+    return people
+  }
+
   async getTrending() {
     // const names = await this.getNames()
     const locations = ['Fast Eddies', 'the back of a wendys', 'a public park', 'the emmys', 'the nickelodeon kids choice awards', 'their grandmas house', 'an undisclosed location', 'the waffleHouse', 'a dennys parking lot', 'a apple genius bar']

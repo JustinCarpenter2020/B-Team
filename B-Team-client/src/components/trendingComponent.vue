@@ -6,7 +6,7 @@
         Trends For You
       </h4>
       <p v-for="(t, index) in trending" :key="index" class="card-text">
-        {{ t }}
+        #{{ t }}
       </p>
     </div>
   </div>
@@ -27,5 +27,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.card-text:hover{
+ color: #1DA1F2;
+  cursor: pointer;
+}
 </style>

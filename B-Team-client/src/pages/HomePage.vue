@@ -26,6 +26,7 @@ export default {
     onMounted(() => {
       postsService.getPosts()
       trendingService.getTrending()
+      trendingService.getPeople()
     })
     return {
       posts: computed(() => AppState.posts)

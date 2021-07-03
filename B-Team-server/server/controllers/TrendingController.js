@@ -6,6 +6,15 @@ export class TrendingController extends BaseController {
     super('api/trending')
     this.router
       .get('', this.getTrending)
+      .get('/people', this.getPeople)
+  }
+
+  async getPeople(req, res, next) {
+    try {
+      res.send(await trendingService.getPeople())
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getTrending(req, res, next) {

@@ -23,6 +23,7 @@ import { commentsService } from '../services/CommentsService'
 
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
+import { trendingService } from '../services/TrendingService'
 export default {
   setup() {
     const route = useRoute()
@@ -31,6 +32,7 @@ export default {
     onMounted(() => {
       postsService.getOne(route.params.id)
       commentsService.getComments(route.params.id)
+      trendingService.getPeople()
     })
     return {
       state,
