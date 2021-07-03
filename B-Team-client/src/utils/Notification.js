@@ -31,6 +31,22 @@ export default class Notification {
     }
   }
 
+  static async alert() {
+    const { value: input } = await Swal.fire({
+      title: 'Please supply some content',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Create!',
+      showLoaderOnConfirm: true
+    })
+    if (input) {
+      return input
+    }
+  }
+
   /**
  *
  * @param {string} title The title text

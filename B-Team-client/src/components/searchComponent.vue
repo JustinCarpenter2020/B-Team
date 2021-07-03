@@ -1,11 +1,11 @@
 <template>
   <div class="my-4 row" v-if="account._id">
-    <div class="col-2">
+    <div class="col-2 d-none col-md-block">
       <div>
         <img class="profilePic" :src="account.picture" alt="">
       </div>
     </div>
-    <div class="col-7 mx-0">
+    <div class="col-md-7 col-8 mx-0">
       <div class="form-group">
         <input type="text"
                class="form-control input text-white"
@@ -17,7 +17,7 @@
         >
       </div>
     </div>
-    <div class="col-3 mt-1">
+    <div class="col-md-3 col-4 mt-1">
       <i class="far fa-image fa-2x blue mr-3 " title="attach image" data-toggle="modal" data-target="#imageModal"></i>
       <i class="far fa-paper-plane fa-2x blue" title="share" @click="createPost"></i>
     </div>
@@ -79,9 +79,12 @@ export default {
       async createPost() {
         try {
           if (!state.newPost.body) {
-            return window.alert('need content')
+            const body = await Notification.alert()
+            state.newPost.body = body
           }
-          await postsService.create(state.newPost)
+          if (state.newPost.body) {
+            await postsService.create(state.newPost)
+          }
         } catch (error) {
           logger.error(error)
           Notification.toast(error)

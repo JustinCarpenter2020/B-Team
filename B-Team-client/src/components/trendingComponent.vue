@@ -16,7 +16,6 @@
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 export default {
-  props: { trendingProp: { type: Object, required: true } },
   setup() {
     return {
       trending: computed(() => AppState.trending)
