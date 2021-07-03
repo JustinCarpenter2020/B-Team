@@ -38,6 +38,13 @@ p{
 
 }
 
+.dropdown-toggle{
+  background:transparent;
+}
+.dropdown-toggle::after {
+    content: none;
+}
+
   .border-transparentWhite{
           border: solid 1px;
           border-color: #f5f8fa48;

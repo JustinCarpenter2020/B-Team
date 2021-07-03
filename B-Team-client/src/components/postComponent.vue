@@ -171,13 +171,6 @@ export default {
   background-color: rgba(43, 165, 137, 0.45);
 }
 
-.dropdown-toggle{
-  background:transparent;
-}
-.dropdown-toggle::after {
-    content: none;
-}
-
 .profile{
   border-radius: 50%;
   height: 3rem;

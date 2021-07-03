@@ -2,8 +2,27 @@
   <!-- //NOTE needs border between each one -->
   <div class="col-12 p-0 ">
     <div class="card border">
-      <img class="card-img-top" src="holder.js/100x180/" alt="">
       <div class="card-body">
+        <div class="row text-right" v-if="account.id == commentProp.creatorId">
+          <div class="col-12">
+            <div class="dropdown">
+              <button class="dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+              >
+                <i class="fas fa-ellipsis-h text-white"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-item text-danger" @click="deleteComment" href="#">
+                  Delete Comment
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-3" v-if="commentProp.Creator">
             <img class="profile" :src="commentProp.Creator.picture" alt="">
@@ -51,6 +70,7 @@ import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
 import { logger } from '../utils/Logger'
 import moment from 'moment'
+import Notification from '../utils/Notification'
 export default {
   props: { commentProp: { type: Object, required: true } },
   setup(props) {
@@ -68,6 +88,16 @@ export default {
         if (typeof props.commentProp.createdAt === 'string') {
           const date = new Date(input)
           return moment(date).fromNow()
+        }
+      },
+      async deleteComment() {
+        try {
+          if (await Notification.confirmAction('Are you sure?', 'this comment will be removed', 'info')) {
+            await commentsService.deleteComment(props.commentProp.id)
+            Notification.toast('Successfully deleted', 'success')
+          }
+        } catch (error) {
+          logger.error(error)
         }
       }
     }
