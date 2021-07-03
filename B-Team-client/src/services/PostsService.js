@@ -25,6 +25,9 @@ class PostsService {
     const res = await api.put('api/posts/' + id + '/like')
     const foundInd = AppState.posts.findIndex(p => p.id === id)
     AppState.posts.splice(foundInd, 1, res.data)
+    if (AppState.activePost.id === id) {
+      AppState.activePost = res.data
+    }
   }
 
   async deletePost(id) {

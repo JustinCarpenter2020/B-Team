@@ -1,5 +1,5 @@
 <template>
-  <div class="row text-white">
+  <div class="row text-white" v-if="postProp.likedIds">
     <div class="col-12">
       <div class="card border-transparentWhite">
         <div class="card-body">
