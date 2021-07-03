@@ -5,20 +5,8 @@
         <optionsComponent />
       </div>
       <div class="col-md-6 mt-4 text-center text-white">
-        <div class="row">
-          <div class="card col-12 border">
-            <img class="card-img-top" src="holder.js/100x180/" alt="">
-            <div class="card-body">
-              <h4 class="card-title">
-                {{ post.body }}
-              </h4>
-              <div class="card-img" v-if="post.imgUrl">
-                <img class="img-fluid rounded" :src="post.imgUrl" alt="">
-              </div>
-            </div>
-          </div>
-          <commentComponent v-for="c in comments" :key="c.id" :comment-prop="c" />
-        </div>
+        <postComponent :post-prop="post" />
+        <commentComponent v-for="c in comments" :key="c.id" :comment-prop="c" />
       </div>
       <div class="col d-none d-md-block">
         side bar

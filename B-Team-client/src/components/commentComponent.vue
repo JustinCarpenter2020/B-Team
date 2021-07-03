@@ -1,7 +1,6 @@
 <template>
-  <!-- //NOTE needs border between each one -->
   <div class="col-12 p-0 ">
-    <div class="card border">
+    <div class="card border-transparentWhite">
       <div class="card-body">
         <div class="row text-right" v-if="account.id == commentProp.creatorId">
           <div class="col-12">

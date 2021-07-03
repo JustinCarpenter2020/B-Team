@@ -29,7 +29,7 @@
             </div>
             <div class="col-7 d-flex align-self-center">
               <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
-                <h4 class="card-title">
+                <h4 class="card-title post-text">
                   {{ postProp.body }}
                 </h4>
               </router-link>
@@ -165,6 +165,16 @@ export default {
 <style lang="scss" scoped>
 .rounded{
   border-radius: 8%;
+}
+
+.post-text{
+  color: white;
+  text-decoration: none;
+}
+
+.post-text:hover{
+  color: #1DA1F2;
+  cursor: pointer;
 }
 
 .swal-overlay {

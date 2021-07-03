@@ -76,9 +76,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .card{
-//   height: 70vh;
-// }
 .text{
  font-size: 25px;
 }
