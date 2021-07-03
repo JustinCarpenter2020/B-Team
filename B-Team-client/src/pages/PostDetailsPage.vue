@@ -4,12 +4,12 @@
       <div class="col-md-3">
         <optionsComponent />
       </div>
-      <div class="col-md-6 mt-4 text-center text-white">
+      <div class="col-md-6 mt-4 text-center text-white mb-5">
         <postComponent :post-prop="post" />
         <commentComponent v-for="c in comments" :key="c.id" :comment-prop="c" />
       </div>
-      <div class="col d-none d-md-block">
-        side bar
+      <div class="col-md-3">
+        <followComponent />
       </div>
     </div>
   </div>

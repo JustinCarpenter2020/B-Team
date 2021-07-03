@@ -23,20 +23,23 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-2" v-if="postProp.Creator">
+          <div class="row align-items-center">
+            <div class="col-12 my-3 text-right">
+              <span class="opacity">{{ time() }}</span>
+            </div>
+            <div class="col-md-2 col-3" v-if="postProp.Creator">
               <img class="profile" :src="postProp.Creator.picture" alt="">
             </div>
-            <div class="col-7 d-flex align-self-center">
+            <div class="col-7  d-flex align-self-center">
               <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
                 <h4 class="card-title post-text">
                   {{ postProp.body }}
                 </h4>
               </router-link>
             </div>
-            <div class="col-3 text-right">
+            <!-- <div class="col-3 d-none col-md-block text-right">
               <span class="opacity">{{ time() }}</span>
-            </div>
+            </div> -->
           </div>
           <div class="row mt-3">
             <div class="card-img" v-if="postProp.imgUrl">
@@ -44,19 +47,19 @@
             </div>
           </div>
         </div>
-        <div class="row" v-if="account._id">
+        <div class="row mb-3" v-if="account._id">
           <div class="col-4 text-right">
             <i class="far fa-comment" title="comment" data-toggle="modal" :data-target="'#addCommentModal' + postProp.id"></i>
           </div>
           <div class="col-4 text-center">
             <i class="fas fa-exchange-alt" title="share"></i>
           </div>
-          <div class="col-4" v-if="!postProp.likedIds.includes(account.id)">
+          <div class="col-4 text-left" v-if="!postProp.likedIds.includes(account.id)">
             <span>
               <i class="far fa-heart" @click="like" title="like"></i> {{ postProp.likedIds.length }}
             </span>
           </div>
-          <div class="col-4" v-else>
+          <div class="col-4 text-left" v-else>
             <span>
               <i class="fas fa-heart" @click="like" title="unlike"></i> {{ postProp.likedIds.length }}
             </span>
