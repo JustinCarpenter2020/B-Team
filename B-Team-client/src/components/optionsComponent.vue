@@ -7,19 +7,19 @@
           <i class="fas fa-home"></i> Home
         </p>
       </router-link>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="fas fa-hashtag"></i> Explore
       </p>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="far fa-bell"></i> Notifications
       </p>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="far fa-envelope"></i> Messages
       </p>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="far fa-bookmark"></i> BookMarks
       </p>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="far fa-list-alt"></i>  Lists
       </p>
       <p class="text" v-if="user.picture" @click="logout">
@@ -30,7 +30,7 @@
           class="rounded"
         /> Profile
       </p>
-      <p class="text">
+      <p class="text" @click="buy">
         <i class="far fa-dot-circle"></i> More
       </p>
       <div class="d-flex justify-content-center mt-4" v-if="user.name">
@@ -65,6 +65,9 @@ export default {
         if (await Notification.confirmAction('Are you sure you want to log out', 'you will be missed', 'info', 'logout')) {
           AuthService.logout({ returnTo: window.location.origin })
         }
+      },
+      buy() {
+        Notification.toast('You must buy premium for that feature', 'info')
       }
     }
   },

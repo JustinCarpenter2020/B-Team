@@ -6,14 +6,14 @@
           <div class="row text-right" v-if="account.id == postProp.creatorId">
             <div class="col-12">
               <div class="dropdown">
-                <button class="bg-transparent dropdown-toggle"
+                <button class="dropdown-toggle"
                         type="button"
                         id="dropdownMenuButton"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
                 >
-                  <i class="fas fa-ellipsis-v text-white"></i>
+                  <i class="fas fa-ellipsis-h text-white"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <div class="dropdown-item text-danger" @click="deletePost" href="#">
@@ -33,6 +33,9 @@
                   {{ postProp.body }}
                 </h4>
               </router-link>
+            </div>
+            <div class="col-3 text-right">
+              <span class="opacity">{{ time() }}</span>
             </div>
           </div>
           <div class="row mt-3">
@@ -110,6 +113,7 @@ import { logger } from '../utils/Logger'
 import Notification from '../utils/Notification'
 import { commentsService } from '../services/CommentsService'
 import { router } from '../router'
+import moment from 'moment'
 import $ from 'jquery'
 export default {
   props: { postProp: { type: Object, required: true } },
@@ -144,6 +148,13 @@ export default {
         } catch (error) {
           logger.error(error)
         }
+      },
+      time() {
+        const input = props.postProp.createdAt
+        if (typeof props.postProp.createdAt === 'string') {
+          const date = new Date(input)
+          return moment(date).fromNow()
+        }
       }
     }
   },
@@ -160,6 +171,9 @@ export default {
   background-color: rgba(43, 165, 137, 0.45);
 }
 
+.dropdown-toggle{
+  background:transparent;
+}
 .dropdown-toggle::after {
     content: none;
 }

@@ -29,6 +29,10 @@ p{
     background-color: #1c1f24c2 ;
 }
 
+.opacity{
+  opacity: .5;
+}
+
 .card{
   background-color: #141d26;
 
