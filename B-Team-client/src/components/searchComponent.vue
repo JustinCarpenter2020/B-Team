@@ -84,6 +84,7 @@ export default {
           }
           if (state.newPost.body) {
             await postsService.create(state.newPost)
+            state.newPost = {}
           }
         } catch (error) {
           logger.error(error)
