@@ -9,6 +9,7 @@ class SocketService extends SocketHandler {
     this
       .on('error', this.onError)
       .on('NEW_POST', this.newPost)
+      .on('DELETE_POST', this.deletePost)
   }
 
   onError(e) {
@@ -18,6 +19,12 @@ class SocketService extends SocketHandler {
 
   newPost(payload) {
     AppState.posts.push(payload)
+  }
+
+  deletePost(payload) {
+    logger.log(payload)
+    const foundInd = AppState.posts.findIndex(p => p.id === payload.id)
+    AppState.posts.splice(foundInd, 1)
   }
 }
 

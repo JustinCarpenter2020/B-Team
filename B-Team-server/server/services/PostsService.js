@@ -40,7 +40,7 @@ class PostsService {
     if (!found) {
       throw new BadRequest('Invalid Id, or you are not the creator')
     }
-    return 'Delorted'
+    return found
   }
 }
 

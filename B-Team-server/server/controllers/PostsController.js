@@ -74,7 +74,9 @@ export class PostsController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await postsService.delete(req.params.id, req.userInfo.id))
+      const post = await postsService.delete(req.params.id, req.userInfo.id)
+      res.send(post)
+      socketProvider.message('DELETE_POST', post)
     } catch (error) {
       next(error)
     }

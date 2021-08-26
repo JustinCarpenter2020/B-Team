@@ -31,9 +31,7 @@ class PostsService {
   }
 
   async deletePost(id) {
-    await api.delete('api/posts/', id)
-    const foundInd = AppState.posts.findIndex(p => p.id === id)
-    AppState.posts.splice(foundInd, 1)
+    await api.delete('api/posts/' + id)
   }
 }
 
