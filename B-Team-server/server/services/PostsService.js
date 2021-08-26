@@ -1,12 +1,12 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class PostsService {
-  async getAll() {
-    return await dbContext.Posts.find().populate('Creator')
+  async getAll(query) {
+    return await dbContext.Posts.find(query).populate('Creator')
   }
 
   async getOne(id) {
-    return await dbContext.Posts.findOne({ _id: id }).populate('Creator')
+    return await dbContext.Posts.findOne({ _id: id }).populate('creator')
   }
 
   async create(body) {

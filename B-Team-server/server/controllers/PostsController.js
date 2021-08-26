@@ -1,8 +1,8 @@
 import { postsService } from '../services/PostsService'
 import { commentsService } from '../services/CommentsService'
-
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
+import { socketProvider } from '../SocketProvider'
 
 export class PostsController extends BaseController {
   constructor() {
@@ -20,7 +20,7 @@ export class PostsController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      res.send(await postsService.getAll())
+      res.send(await postsService.getAll(req.query))
     } catch (error) {
       next(error)
     }
@@ -46,7 +46,9 @@ export class PostsController extends BaseController {
     try {
       delete req.body.likedIds
       req.body.creatorId = req.userInfo.id
-      res.send(await postsService.create(req.body))
+      const post = await postsService.create(req.body)
+      res.send(post)
+      socketProvider.message('NEW_POST', post)
     } catch (error) {
       next(error)
     }
