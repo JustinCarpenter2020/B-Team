@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 p-0 ">
+  <div class="col-12 p-0 " v-if="commentProp.creator">
     <div class="card border-transparentWhite">
       <div class="card-body">
         <div class="row text-right" v-if="account.id == commentProp.creatorId">
@@ -23,17 +23,17 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3" v-if="commentProp.Creator">
-            <img class="profile" :src="commentProp.Creator.picture" alt="">
+          <div class="col-3" v-if="commentProp.creator">
+            <img class="profile" :src="commentProp.creator.picture" alt="">
           </div>
           <div class="col-8">
             <div class="row text-left">
               <div class="col-12">
-                {{ commentProp.Creator.name.split('@')[0] }}
+                {{ commentProp.creator.name.split('@')[0] }}
               </div>
               <div class="col-12">
                 <span class="opacity">
-                  @{{ commentProp.Creator.name.split('@')[0] }}
+                  @{{ commentProp.creator.name.split('@')[0] }}
                   {{ time() }}
 
                 </span>

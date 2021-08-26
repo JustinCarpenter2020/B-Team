@@ -27,8 +27,8 @@
             <div class="col-12 my-3 text-right">
               <span class="opacity">{{ time() }}</span>
             </div>
-            <div class="col-md-2 col-3" v-if="postProp.Creator">
-              <img class="profile" :src="postProp.Creator.picture" alt="">
+            <div class="col-md-2 col-3" v-if="postProp.creator">
+              <img class="profile" :src="postProp.creator.picture" alt="">
             </div>
             <div class="col-7  d-flex align-self-center">
               <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">

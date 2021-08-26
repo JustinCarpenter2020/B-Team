@@ -11,7 +11,7 @@ const Post = new Schema(
 
 )
 
-Post.virtual('Creator', {
+Post.virtual('creator', {
   localField: 'creatorId',
   ref: 'Account',
   foreignField: '_id',

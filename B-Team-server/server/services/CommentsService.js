@@ -3,11 +3,11 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
   async getByPostId(id) {
-    return await dbContext.Comments.find({ postId: id }).populate('Creator')
+    return await dbContext.Comments.find({ postId: id }).populate('creator')
   }
 
   async getOne(id) {
-    return await dbContext.Comments.findOne({ _id: id }).populate('Creator')
+    return await dbContext.Comments.findOne({ _id: id }).populate('creator')
   }
 
   async create(body) {

@@ -8,7 +8,7 @@ const Comment = new Schema({
 },
 { timestamps: true, toJSON: { virtuals: true } })
 
-Comment.virtual('Creator', {
+Comment.virtual('creator', {
   localField: 'creatorId',
   ref: 'Account',
   foreignField: '_id',
