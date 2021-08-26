@@ -12,6 +12,16 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
+    path: '/Messages',
+    name: 'DmPage',
+    component: loadPage('DmPage'),
+    children: [{
+      path: ':id',
+      name: 'MessagePage',
+      component: loadPage('MessagePage')
+    }]
+  },
+  {
     path: '/post/:id',
     name: 'postDetails',
     component: loadPage('PostDetailsPage')

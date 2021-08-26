@@ -13,9 +13,11 @@
       <p class="text" @click="buy">
         <i class="far fa-bell"></i> Notifications
       </p>
-      <p class="text" @click="buy">
-        <i class="far fa-envelope"></i> Messages
-      </p>
+      <router-link class="decor" :to="{ name: 'DmPage' }">
+        <p class="text">
+          <i class="far fa-envelope"></i> Messages
+        </p>
+      </router-link>
       <p class="text" @click="buy">
         <i class="far fa-bookmark"></i> BookMarks
       </p>
