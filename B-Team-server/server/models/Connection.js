@@ -5,13 +5,13 @@ const Connection = new Schema({
   user2: { type: Schema.Types.ObjectId, required: true }
 }, { timestamps: true, toJSON: { virtuals: true } })
 Connection.virtual('sender', {
-  localField: 'user2',
+  localField: 'user1',
   ref: 'Account',
   foreignField: '_id',
   justOne: true
 })
 Connection.virtual('receiver', {
-  localField: 'user1',
+  localField: 'user2',
   ref: 'Account',
   foreignField: '_id',
   justOne: true

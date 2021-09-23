@@ -5,16 +5,16 @@
       <h4 class="card-title">
       </h4>
       <div class="small-cards mt-5 border-transparentWhite h-25 d-flex align-items-center" v-for="c in dmProp" :key="c.id">
-        <p class="mx-2" v-if="account.id == c.user1">
-          <img class="img-fluid rounded" :src="c.sender.picture" alt="">
-          <span class="ml-3">
-            {{ c.sender.name.split("@")[0] }}
-          </span>
-        </p>
-        <p class="mx-2" v-else>
+        <p class="mx-2" v-if="account.id == c.user1" @click="getMessages(c.user2)">
           <img class="img-fluid rounded" :src="c.receiver.picture" alt="">
           <span class="ml-3">
             {{ c.receiver.name.split("@")[0] }}
+          </span>
+        </p>
+        <p class="mx-2" v-else @click="getMessages(c.user1)">
+          <img class="img-fluid rounded" :src="c.sender.picture" alt="">
+          <span class="ml-3">
+            {{ c.sender.name.split("@")[0] }}
           </span>
         </p>
       </div>
