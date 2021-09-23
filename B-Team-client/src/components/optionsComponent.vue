@@ -89,6 +89,7 @@ export default {
 
 .card{
   background-color: #141d26;
+  height: 80vh;
 }
 
 .customBtn {

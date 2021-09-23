@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .from-them{
-  background-color: blue;
+  background-color: rgb(3, 184, 216);
   border-radius: 20px;
 }
 </style>
