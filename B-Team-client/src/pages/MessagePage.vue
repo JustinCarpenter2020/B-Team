@@ -1,19 +1,6 @@
 <template>
-  <div class="component">
-    <div class="text-light mt-5" v-for="m in messages" :key="m.id">
-      <div class="" v-if="m.to == account.id">
-        <p class="text-right">
-          <span class="from-them p-3">
-            {{ m.body }}
-          </span>
-        </p>
-      </div>
-      <div class="from-me" v-else>
-        <p class="text-left">
-          {{ m.body }}
-        </p>
-      </div>
-    </div>
+  <div class="">
+    <dmComponent />
   </div>
 </template>
 
@@ -29,7 +16,6 @@ export default {
       await messagesService.getMessages(route.params.id)
     })
     return {
-      messages: computed(() => AppState.currentMessages),
       account: computed(() => AppState.account)
     }
   }
@@ -37,8 +23,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.from-them{
-  background-color: rgb(3, 184, 216);
-  border-radius: 20px;
-}
+
 </style>

@@ -7,7 +7,7 @@
       <div class="col-md-4 col-12">
         <dmUsersComponent :dm-prop="connections" />
       </div>
-      <div class="col-md-8 col-12">
+      <div class="col-md-5 col-12">
         <router-view></router-view>
       </div>
     </div>

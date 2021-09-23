@@ -48,7 +48,6 @@ export default {
 
 <style lang="scss" scoped>
 .scroll{
-  // height: 100vh;
   overflow-y: scroll;
 }
 .height{
