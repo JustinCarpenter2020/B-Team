@@ -15,10 +15,12 @@ const routes = [
     path: '/Messages',
     name: 'DmPage',
     component: loadPage('DmPage'),
+    beforeEnter: authGuard,
     children: [{
       path: ':id',
       name: 'MessagePage',
-      component: loadPage('MessagePage')
+      component: loadPage('MessagePage'),
+      beforeEnter: authGuard
     }]
   },
   {

@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { router } from '../router'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -12,6 +13,7 @@ class MessagesService {
     const res = await api.get('api/messages/' + id)
     logger.log(res)
     AppState.currentMessages = res.data
+    router.push({ name: 'MessagePage', params: { id: id } })
   }
 }
 
