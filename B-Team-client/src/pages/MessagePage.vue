@@ -1,8 +1,19 @@
 <template>
   <div class="component">
-    <h1 class="text-light" v-for="m in messages" :key="m.id">
-      {{ m }}
-    </h1>
+    <div class="text-light mt-5" v-for="m in messages" :key="m.id">
+      <div class="" v-if="m.to == account.id">
+        <p class="text-right">
+          <span class="from-them p-3">
+            {{ m.body }}
+          </span>
+        </p>
+      </div>
+      <div class="from-me" v-else>
+        <p class="text-left">
+          {{ m.body }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,15 +26,19 @@ export default {
   setup() {
     const route = useRoute()
     onMounted(async() => {
-      await messagesService.getConnections(route.params.id)
+      await messagesService.getMessages(route.params.id)
     })
     return {
-      messages: computed(() => AppState.currentMessages)
+      messages: computed(() => AppState.currentMessages),
+      account: computed(() => AppState.account)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.from-them{
+  background-color: blue;
+  border-radius: 20px;
+}
 </style>
