@@ -16,6 +16,9 @@
         </div>
       </div>
     </div>
+    <div class="card-footer">
+      <p>talk</p>
+    </div>
   </div>
 </template>
 
