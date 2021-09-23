@@ -1,4 +1,5 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
+import { connectionService } from '../services/ConnectionService'
 import { messagesService } from '../services/MessagesService'
 import { socketProvider } from '../SocketProvider'
 import BaseController from '../utils/BaseController'
@@ -8,18 +9,18 @@ export class MessagesController extends BaseController {
     super('api/messages')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      // .get('', this.getUsers)
+      .get('', this.getUsers)
       .get('/:to', this.getMessages)
       .post('', this.createMessage)
   }
 
-  // async getUsers(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async getUsers(req, res, next) {
+    try {
+      res.send(await connectionService.getConnections(req.userInfo.id))
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async getMessages(req, res, next) {
     try {

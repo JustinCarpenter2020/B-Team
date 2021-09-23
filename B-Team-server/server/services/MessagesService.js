@@ -18,8 +18,8 @@ class MessagesService {
       }
     }
     // find the connection, if there is none, create one
-    const connection = await dbContext.Connections.aggregate([q])
-    if (!connection) {
+    const connection = await dbContext.Connections.aggregate([q]).exec()
+    if (connection.length === 0) {
       // If the connection cannot be made it will error out in this service
       await connectionService.createConnection({ user1: body.from, user2: body.to })
     }
