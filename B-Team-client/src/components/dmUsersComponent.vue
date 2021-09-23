@@ -26,6 +26,7 @@
 import { computed } from '@vue/runtime-core'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+import { messagesService } from '../services/MessagesService'
 export default {
   props: {
     dmProp: { type: Object, required: true }
@@ -35,7 +36,7 @@ export default {
       account: computed(() => AppState.account),
       async getMessages(id) {
         try {
-          console.log(id)
+          await messagesService.getMessages(id)
         } catch (error) {
           logger.error(error)
         }

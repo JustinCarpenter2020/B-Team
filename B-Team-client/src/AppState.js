@@ -9,5 +9,6 @@ export const AppState = reactive({
   activePost: {},
   comments: [],
   people: [],
-  connections: []
+  connections: [],
+  currentMessages: []
 })
