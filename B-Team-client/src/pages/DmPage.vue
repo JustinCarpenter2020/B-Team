@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4 col-12">
-        <dmUsersComponent />
+        <dmUsersComponent :dm-prop="connections" />
       </div>
       <div class="col-md-8 col-12">
         <router-view></router-view>
@@ -12,9 +12,17 @@
 </template>
 
 <script>
+import { computed, onMounted } from '@vue/runtime-core'
+import { messagesService } from '../services/MessagesService'
+import { AppState } from '../AppState'
 export default {
   setup() {
-    return {}
+    onMounted(async() => {
+      await messagesService.getConnections()
+    })
+    return {
+      connections: computed(() => AppState.connections)
+    }
   }
 }
 </script>
