@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 
 class MessagesService {
   async getMessages(messageObject) {
-    const messages = await dbContext.Messages.find(messageObject)
+    const messages = await dbContext.Messages.find(messageObject).populate('sender')
     if (!messages) {
       throw new Error('no current messages')
     }
