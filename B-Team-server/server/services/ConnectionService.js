@@ -2,20 +2,11 @@ import { dbContext } from '../db/DbContext'
 
 class ConnectionService {
   async getConnections(id) {
-    // const q = {
-    //   $match: {
-    //     $or: [{ user1: id }, { user2: id }]
-    //   }
-    // }
-    // const connections = await dbContext.Connections.aggregate([q])
-    //   .project('friend')
-    //   .collation({ locale: 'en_US', strength: 1 })
-    //   .exec()
-    // if (!connections) {
-    //   throw new Error('failed to find connections')
-    // }
-    // return connections
-    return await dbContext.Connections.find()
+    const connections = await dbContext.Connections.find({ $or: [{ user1: id }, { user2: id }] })
+    if (!connections) {
+      throw new Error('failed to find connections')
+    }
+    return connections
   }
 
   async createConnection(connection) {
