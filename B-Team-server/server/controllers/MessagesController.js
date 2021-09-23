@@ -1,5 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { messagesService } from '../services/MessagesService'
+import { socketProvider } from '../SocketProvider'
 import BaseController from '../utils/BaseController'
 
 export class MessagesController extends BaseController {
@@ -28,7 +29,9 @@ export class MessagesController extends BaseController {
   async createMessage(req, res, next) {
     try {
       req.body.from = req.userInfo.id
-      res.send(await messagesService.createMessage(req.body))
+      const newMessage = await messagesService.createMessage(req.body)
+      socketProvider.messageUser(req.body.to, 'NEW_MESSAGE', newMessage)
+      res.send(newMessage)
     } catch (error) {
       next(error)
     }

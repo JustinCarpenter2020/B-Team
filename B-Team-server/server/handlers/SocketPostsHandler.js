@@ -11,6 +11,7 @@ export class SocketPostsHandler extends SocketHandler {
     this
       .on('NEW_POST', this.newPost)
       .on('DELETE_POST', this.deletePost)
+      // .on("NEW_MESSAGE", this.new)
   }
 
   async newPost(payload) {
