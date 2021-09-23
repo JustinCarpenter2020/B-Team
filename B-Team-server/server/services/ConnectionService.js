@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 
 class ConnectionService {
   async getConnections(id) {
-    const connections = await dbContext.Connections.find({ $or: [{ user1: id }, { user2: id }] })
+    const connections = await dbContext.Connections.find({ $or: [{ user1: id }, { user2: id }] }).populate('sender').populate('receiver')
     if (!connections) {
       throw new Error('failed to find connections')
     }
