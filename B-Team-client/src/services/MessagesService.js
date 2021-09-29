@@ -15,6 +15,11 @@ class MessagesService {
     AppState.currentMessages = res.data
     router.push({ name: 'MessagePage', params: { id: id } })
   }
+
+  async createMessage(newMessage) {
+    const res = await api.post('api/messages', newMessage)
+    AppState.currentMessages.push(res.data)
+  }
 }
 
 export const messagesService = new MessagesService()
