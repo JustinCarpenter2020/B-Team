@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { router } from '../router'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -32,6 +33,7 @@ class PostsService {
 
   async deletePost(id) {
     await api.delete('api/posts/' + id)
+    router.push({ name: 'Home' })
   }
 }
 
