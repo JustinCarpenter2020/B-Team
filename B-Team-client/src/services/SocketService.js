@@ -29,7 +29,7 @@ class SocketService extends SocketHandler {
   }
 
   newMessage(payload) {
-    logger.log(payload)
+    AppState.currentMessages.push(payload)
   }
 }
 

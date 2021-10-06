@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class PostsService {
   async getAll(query) {
-    return await dbContext.Posts.find(query).populate('creator')
+    return await dbContext.Posts.find(query).sort('-createdAt').populate('creator')
   }
 
   async getOne(id) {
@@ -10,7 +10,9 @@ class PostsService {
   }
 
   async create(body) {
-    return await dbContext.Posts.create(body)
+    const post = await dbContext.Posts.create(body)
+    await post.populate('creator')
+    return post
   }
 
   async edit(body) {
