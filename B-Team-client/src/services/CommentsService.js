@@ -4,7 +4,7 @@ import { api } from './AxiosService'
 
 class CommentsService {
   async getComments(id) {
-    const res = await api.get('api/posts/' + id + '/comments')
+    const res = await api.get('api/posts/' + id + '/comments').sort('-updatedAt')
     AppState.comments = res.data
     logger.log(res.data)
   }
