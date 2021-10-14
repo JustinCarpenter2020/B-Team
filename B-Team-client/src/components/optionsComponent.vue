@@ -24,14 +24,16 @@
       <p class="text" @click="buy">
         <i class="far fa-list-alt"></i>  Lists
       </p>
-      <p class="text" v-if="user.picture" @click="logout">
-        <img
-          :src="user.picture"
-          alt="user photo"
-          height="40"
-          class="rounded"
-        /> Profile
-      </p>
+      <router-link class="text-light link" :to="{name: 'Profile', params: {id: account.id}}">
+        <p class="text" v-if="user.picture">
+          <img
+            :src="user.picture"
+            alt="user photo"
+            height="40"
+            class="rounded"
+          /> Profile
+        </p>
+      </router-link>
       <p class="text" @click="buy">
         <i class="far fa-dot-circle"></i> More
       </p>
@@ -90,6 +92,10 @@ export default {
 .card{
   background-color: #141d26;
   height: 80vh;
+}
+
+.link{
+  text-decoration: none;
 }
 
 .customBtn {

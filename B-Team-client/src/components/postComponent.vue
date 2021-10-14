@@ -49,19 +49,19 @@
         </div>
         <div class="row mb-3" v-if="account._id">
           <div class="col-4 text-right">
-            <i class="far fa-comment" title="comment" data-toggle="modal" :data-target="'#addCommentModal' + postProp.id"></i>
+            <i class="far fa-comment cursor" title="comment" data-toggle="modal" :data-target="'#addCommentModal' + postProp.id"></i>
           </div>
           <div class="col-4 text-center">
-            <i class="fas fa-exchange-alt" title="share"></i>
+            <i class="fas fa-exchange-alt cursor" title="share"></i>
           </div>
           <div class="col-4 text-left" v-if="!postProp.likedIds.includes(account.id)">
             <span>
-              <i class="far fa-heart" @click="like" title="like"></i> {{ postProp.likedIds.length }}
+              <i class="far fa-heart cursor" @click="like" title="like"></i> {{ postProp.likedIds.length }}
             </span>
           </div>
           <div class="col-4 text-left" v-else>
             <span>
-              <i class="fas fa-heart" @click="like" title="unlike"></i> {{ postProp.likedIds.length }}
+              <i class="fas fa-heart cursor" @click="like" title="unlike"></i> {{ postProp.likedIds.length }}
             </span>
           </div>
         </div>

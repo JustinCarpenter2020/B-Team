@@ -19,6 +19,6 @@ export default {
 <style lang="scss" scoped>
 .img-top{
   width: 100%;
-  height: 20vh;
+  height: 30vh;
 }
 </style>
