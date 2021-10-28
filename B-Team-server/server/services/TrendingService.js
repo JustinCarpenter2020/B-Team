@@ -4,7 +4,9 @@ class TrendingService {
   async getPeople() {
     const people = []
     for (let i = 0; i <= 2; i++) {
-      const names = await this.getNames()
+      const count = await dbContext.Account.count()
+      const random = Math.floor(Math.random() * (count - 1))
+      const names = await dbContext.Account.find({}).limit(2).skip(random)
       people.push(names[0], names[1])
     }
     return people

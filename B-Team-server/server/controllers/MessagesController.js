@@ -9,17 +9,8 @@ export class MessagesController extends BaseController {
     super('api/messages')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getUsers)
       .get('/:to', this.getMessages)
       .post('', this.createMessage)
-  }
-
-  async getUsers(req, res, next) {
-    try {
-      res.send(await connectionService.getConnections(req.userInfo.id))
-    } catch (error) {
-      next(error)
-    }
   }
 
   async getMessages(req, res, next) {

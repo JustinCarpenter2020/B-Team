@@ -16,12 +16,12 @@
 
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
-import { messagesService } from '../services/MessagesService'
 import { AppState } from '../AppState'
+import { connectionsService } from '../services/ConnectionsService'
 export default {
   setup() {
     onMounted(async() => {
-      await messagesService.getConnections()
+      await connectionsService.getConnections()
     })
     return {
       connections: computed(() => AppState.connections)

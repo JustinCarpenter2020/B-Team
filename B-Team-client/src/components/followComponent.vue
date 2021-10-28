@@ -5,12 +5,14 @@
       <h4 class="card-title mb-3">
         Who to follow
       </h4>
-      <div class="card-text row mb-3" v-for="(person, index) in people" :key="index">
+      <div class="card-text row mb-3" v-for="p in people" :key="p.id">
         <div class="col-12 mb-2">
-          {{ person }}
+          <p class="m-0">
+            {{ p.name.split("@")[0] }}
+          </p>
         </div>
         <div class="col-12">
-          <button class="btn btn-outline-info" @click="follow">
+          <button class="btn btn-outline-info" @click="follow(p.id)">
             Follow
           </button>
         </div>
@@ -22,13 +24,25 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
+import { connectionsService } from '../services/ConnectionsService'
 import Notification from '../utils/Notification'
 export default {
   setup() {
     return {
       people: computed(() => AppState.people),
-      follow() {
-        Notification.toast('You must buy premium for that feature', 'info')
+      account: computed(() => AppState.account),
+      async follow(id) {
+        try {
+          if (this.account.name) {
+            await connectionsService.newConnection(this.account.id, id)
+          } else {
+            Notification.toast('Please Login to follow other accounts!')
+          }
+        } catch (error) {
+          logger.error(error)
+        }
+        // Notification.toast('You must buy premium for that feature', 'info')
       }
     }
   },
