@@ -6,8 +6,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <ProfileCardComponent />
-        <!-- <searchComponent /> -->
-        <!-- <postComponent v-for="post in posts" :key="post.id" :post-prop="post" /> -->
+        <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
       </div>
       <div class="col-3 d-none d-md-block">
         <trendingComponent />
@@ -18,16 +17,20 @@
 </template>
 
 <script>
-import { onMounted } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
+import { AppState } from '../AppState'
 export default {
   setup() {
     const route = useRoute()
     onMounted(async() => {
       await profilesService.getProfile(route.params.id)
+      await profilesService.getAllPostsByProfileId(route.params.id)
     })
-    return {}
+    return {
+      posts: computed(() => AppState.posts)
+    }
   },
   components: {}
 }

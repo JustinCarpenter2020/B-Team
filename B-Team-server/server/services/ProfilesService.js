@@ -8,6 +8,14 @@ class ProfilesService {
     }
     return profile
   }
+
+  async getPostsByProfileId(id) {
+    const posts = await dbContext.Posts.find({ creatorId: id }).sort('-createdAt')
+    if (!posts) {
+      throw new Error('This user has no posts')
+    }
+    return posts
+  }
 }
 
 export const profilesService = new ProfilesService()
