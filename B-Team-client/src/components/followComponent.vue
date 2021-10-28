@@ -12,8 +12,11 @@
           </p>
         </div>
         <div class="col-12">
-          <button class="btn btn-outline-info" @click="follow(p.id)">
+          <button v-if="!followedIds.includes(p.id)" class="btn btn-outline-info" @click="follow(p.id)">
             Follow
+          </button>
+          <button class="btn btn-outline-danger" v-else>
+            UnFollow
           </button>
         </div>
       </div>
@@ -22,14 +25,17 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { connectionsService } from '../services/ConnectionsService'
 import Notification from '../utils/Notification'
 export default {
   setup() {
+    const followedIds = ref([])
+    watchEffect(() => AppState.connections.forEach(c => followedIds.value.push(c.user2)))
     return {
+      followedIds,
       people: computed(() => AppState.people),
       account: computed(() => AppState.account),
       async follow(id) {
