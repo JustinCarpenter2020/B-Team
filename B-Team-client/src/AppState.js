@@ -10,5 +10,6 @@ export const AppState = reactive({
   comments: [],
   people: [],
   connections: [],
-  currentMessages: []
+  currentMessages: [],
+  activeProfile: {}
 })

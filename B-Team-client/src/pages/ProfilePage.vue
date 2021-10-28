@@ -20,10 +20,12 @@
 <script>
 import { onMounted } from '@vue/runtime-core'
 import { profilesService } from '../services/ProfilesService'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     onMounted(async() => {
-      await profilesService.getProfile()
+      await profilesService.getProfile(route.params.id)
     })
     return {}
   },

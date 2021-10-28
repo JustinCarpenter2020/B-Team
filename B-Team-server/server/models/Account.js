@@ -6,7 +6,8 @@ export const AccountSchema = new Schema(
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String }
+    picture: { type: String },
+    bio: { type: String }
     // following: []
     // NOTE If you wish to add additional public properties for Accounts do so here
   },

@@ -1,9 +1,11 @@
-import { AppState } from '../AppState'
+
 import { api } from './AxiosService'
+import { AppState } from '../AppState'
 
 class ProfilesService {
   async getProfile(id) {
-    await api.get('api/profiles/' + id)
+    const res = await api.get('api/profiles/' + id)
+    AppState.activeProfile = res.data
   }
 }
 

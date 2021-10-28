@@ -1,6 +1,6 @@
 <template>
   <div class="my-4 row" v-if="account._id">
-    <div class="col-2 d-none col-md-block">
+    <div class="col-2 d-flex justify-content-center d-none col-md-block">
       <div>
         <img class="profilePic" :src="account.picture" alt="">
       </div>
