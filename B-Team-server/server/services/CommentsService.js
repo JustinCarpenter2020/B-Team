@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
   async getByPostId(id) {
-    return await dbContext.Comments.find({ postId: id }).populate('creator')
+    return await dbContext.Comments.find({ postId: id }).populate('creator').sort('-createdAt')
   }
 
   async getOne(id) {
