@@ -4,7 +4,7 @@ class TrendingService {
   async getPeople() {
     const people = []
     for (let i = 0; i <= 2; i++) {
-      const count = await dbContext.Account.count()
+      const count = await dbContext.Account.countDocuments()
       const random = Math.floor(Math.random() * (count - 1))
       const names = await dbContext.Account.find({}).limit(2).skip(random)
       people.push(...names)
@@ -23,7 +23,7 @@ class TrendingService {
   }
 
   async getName() {
-    const count = await dbContext.Account.count()
+    const count = await dbContext.Account.countDocuments()
     const random = Math.floor(Math.random() * (count - 1))
     const account = await dbContext.Account.findOne({}).limit(1).skip(random)
     return account.name.split('@')[0]
