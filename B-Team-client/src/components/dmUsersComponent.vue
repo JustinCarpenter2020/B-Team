@@ -4,7 +4,7 @@
     <div class="card-body scroll">
       <h4 class="card-title">
       </h4>
-      <div class="small-cards mt-5 border-transparentWhite h-25 d-flex align-items-center" v-for="c in dmProp" :key="c.id">
+      <div class="small-cards mt-md-5 border-transparentWhite h-25 d-flex align-items-center" v-for="c in dmProp" :key="c.id">
         <p class="mx-2" v-if="account.id == c.user1" @click="getMessages(c.user2)">
           <img class="img-fluid rounded" :src="c.receiver.picture" alt="">
           <span class="ml-3">

@@ -6,16 +6,16 @@
         Who to follow
       </h4>
       <div class="card-text row mb-3" v-for="p in people" :key="p.id">
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-2" v-if="p.name != account.name">
           <p class="m-0">
             {{ p.name.split("@")[0] }}
           </p>
         </div>
-        <div class="col-12">
+        <div class="col-12" v-if="p.name != account.name">
           <button v-if="!followedIds.includes(p.id)" class="btn btn-outline-info" @click="follow(p.id)">
             Follow
           </button>
-          <button class="btn btn-outline-danger" v-else>
+          <button class="btn btn-outline-danger" v-else @click="unFollow(p.id)">
             UnFollow
           </button>
         </div>
@@ -33,7 +33,11 @@ import Notification from '../utils/Notification'
 export default {
   setup() {
     const followedIds = ref([])
-    watchEffect(() => AppState.connections.forEach(c => followedIds.value.push(c.user2)))
+    watchEffect(() => {
+      followedIds.value = []
+      AppState.connections.forEach(c => followedIds.value.push(c.user2))
+    }
+    )
     return {
       followedIds,
       people: computed(() => AppState.people),
@@ -49,6 +53,14 @@ export default {
           logger.error(error)
         }
         // Notification.toast('You must buy premium for that feature', 'info')
+      },
+      async unFollow(id) {
+        try {
+          const found = AppState.connections.find(c => c.user2 === id)
+          await connectionsService.unFollow(found.id)
+        } catch (error) {
+          logger.error(error)
+        }
       }
     }
   },

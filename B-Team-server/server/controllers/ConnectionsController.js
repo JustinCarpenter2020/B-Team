@@ -8,6 +8,7 @@ export class ConnectionsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUsers)
       .post('', this.createConnection)
+      .delete('/:id', this.deleteConnection)
   }
 
   async getUsers(req, res, next) {
@@ -21,6 +22,14 @@ export class ConnectionsController extends BaseController {
   async createConnection(req, res, next) {
     try {
       res.send(await connectionService.createConnection({ user1: req.body.from, user2: req.body.to }))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteConnection(req, res, next) {
+    try {
+      res.send(await connectionService.deleteConnection(req.params.id, req.userInfo.id))
     } catch (error) {
       next(error)
     }

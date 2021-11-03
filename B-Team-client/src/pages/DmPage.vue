@@ -1,8 +1,17 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
+    <div class="row mt-3">
+      <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
+      </div>
+      <div class="col-3 d-block d-md-none">
+        <img class="img-fluid circle-profile" :src="account.picture" alt="">
+      </div>
+      <div class="col-6 d-block d-md-none text-light text-center">
+        Messages
+      </div>
+      <div class="col-3 d-block d-md-none text-light">
+        settings
       </div>
       <div class="col-md-4 col-12">
         <dmUsersComponent :dm-prop="connections" />
@@ -24,12 +33,15 @@ export default {
       await connectionsService.getConnections()
     })
     return {
-      connections: computed(() => AppState.connections)
+      connections: computed(() => AppState.connections),
+      account: computed(() => AppState.account)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.circle-profile{
+  border-radius: 50%;
+}
 </style>

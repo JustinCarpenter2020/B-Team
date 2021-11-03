@@ -16,6 +16,14 @@ class ConnectionService {
     }
     return newConnection
   }
+
+  async deleteConnection(id, userId) {
+    const connection = await dbContext.Connections.findOneAndDelete({ _id: id, user1: userId })
+    if (!connection) {
+      throw new Error('Failed to unfollow')
+    }
+    return connection
+  }
 }
 
 export const connectionService = new ConnectionService()
