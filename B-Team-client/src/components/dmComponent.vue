@@ -18,6 +18,9 @@
               {{ m.body }}
             </span>
           </p>
+          <p class="text-left" v-if="m.createdAt">
+            {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
+          </p>
         </div>
       </div>
     </div>
