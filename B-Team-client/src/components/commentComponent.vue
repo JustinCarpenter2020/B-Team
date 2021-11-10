@@ -24,7 +24,9 @@
         </div>
         <div class="row">
           <div class="col-3" v-if="commentProp.creator">
-            <img class="profile" :src="commentProp.creator.picture" alt="">
+            <router-link :to="{name: 'Profile', params: {id: commentProp.creatorId}}">
+              <img class="profile" :src="commentProp.creator.picture" alt="">
+            </router-link>
           </div>
           <div class="col-8">
             <div class="row text-left">
@@ -77,7 +79,11 @@ export default {
       account: computed(() => AppState.account),
       async like() {
         try {
-          await commentsService.like(props.commentProp.id)
+          if (this.account.name) {
+            await commentsService.like(props.commentProp.id)
+          } else {
+            Notification.toast('Please Login to like comments!')
+          }
         } catch (error) {
           logger.error(error)
         }

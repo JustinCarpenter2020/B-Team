@@ -71,7 +71,7 @@ export default {
         }
       },
       buy() {
-        Notification.toast('You must buy premium for that feature', 'info')
+        Notification.toast('Feature not implemented', 'info')
       }
     }
   },

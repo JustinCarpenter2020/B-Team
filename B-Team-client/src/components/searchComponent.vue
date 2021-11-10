@@ -5,7 +5,7 @@
         <img class="profilePic" :src="account.picture" alt="">
       </div>
     </div>
-    <div class="col-md-7 col-8 mx-0">
+    <div class="col-md-7 col-6 mx-0">
       <div class="form-group">
         <input type="text"
                class="form-control input text-white"

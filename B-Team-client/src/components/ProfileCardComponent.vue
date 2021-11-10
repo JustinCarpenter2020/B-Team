@@ -4,8 +4,11 @@
     <div class="card-body p-0">
       <img class="img-top" :src="profile.banner" alt="">
       <img class="profileImg mx-4" :src="profile.picture" />
+      <p class="mx-4">
+        BIO HERE
+      </p>
     </div>
-    <div class="card-footer border-top">
+    <!-- <div class="card-footer border-top">
       <div class="row justify-content-around">
         <div class="col-4">
           <p>Tweets</p>
@@ -17,7 +20,7 @@
           <p>Likes</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

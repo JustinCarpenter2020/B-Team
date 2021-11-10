@@ -11,7 +11,7 @@
             {{ p.name.split("@")[0] }}
           </p>
         </div>
-        <div class="col-12" v-if="p.name != account.name && account.name">
+        <div class="col-12" v-if="p.name != account.name">
           <button v-if="!followedIds.includes(p.id)" class="btn btn-outline-info" @click="follow(p.id)">
             Follow
           </button>
