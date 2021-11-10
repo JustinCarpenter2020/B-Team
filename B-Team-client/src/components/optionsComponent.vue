@@ -34,9 +34,6 @@
           /> Profile
         </p>
       </router-link>
-      <p class="text" @click="buy">
-        <i class="far fa-dot-circle"></i> More
-      </p>
       <div class="d-flex justify-content-center mt-4" v-if="user.name">
         <button @click="logout" class=" customBtn">
           Logout

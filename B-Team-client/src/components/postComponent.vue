@@ -6,7 +6,7 @@
           <div class="row text-right" v-if="account.id == postProp.creatorId">
             <div class="col-12">
               <div class="dropdown">
-                <button class="dropdown-toggle"
+                <button class="dropdown-toggle border-none"
                         type="button"
                         id="dropdownMenuButton"
                         data-toggle="dropdown"
@@ -91,6 +91,7 @@
             <form @submit.prevent="createComment">
               <div class="form-group">
                 <input type="text"
+                       maxlength="240"
                        class="form-control input"
                        v-model="state.newComment.body"
                        name=""
@@ -170,6 +171,10 @@ export default {
 <style lang="scss" scoped>
 .rounded{
   border-radius: 8%;
+}
+
+.border-none{
+  border: none;
 }
 
 .post-text{

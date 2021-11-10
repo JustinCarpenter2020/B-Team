@@ -47,6 +47,7 @@ export class PostsController extends BaseController {
       delete req.body.likedIds
       req.body.creatorId = req.userInfo.id
       const post = await postsService.create(req.body)
+      post.creator = req.userInfo
       res.send(post)
       socketProvider.message('NEW_POST', post)
     } catch (error) {

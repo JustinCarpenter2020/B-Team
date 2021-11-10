@@ -12,7 +12,6 @@ class PostsService {
   async create(body) {
     const post = await dbContext.Posts.create(body)
     // FIXME this populate don't work
-    await post.populate('creator')
     return post
   }
 

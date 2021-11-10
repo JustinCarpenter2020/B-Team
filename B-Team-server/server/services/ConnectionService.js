@@ -14,7 +14,8 @@ class ConnectionService {
     if (!newConnection) {
       throw new Error('failed to connect')
     }
-    return newConnection
+    const popConnection = await dbContext.Connections.findOne({ _id: newConnection.id }).populate('sender').populate('receiver')
+    return popConnection
   }
 
   async deleteConnection(id, userId) {

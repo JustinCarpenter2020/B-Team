@@ -9,8 +9,8 @@ class ConnectionsService {
   }
 
   async newConnection(myId, id) {
-    await api.post('api/connections', { from: myId, to: id })
-    // AppState.connections.push(res.data)
+    const res = await api.post('api/connections', { from: myId, to: id })
+    AppState.connections.push(res.data)
   }
 
   async unFollow(id) {
