@@ -64,12 +64,13 @@ export default {
     const newMessage = ref({ to: route.params.id })
     return {
       newMessage,
+      route,
       messages: computed(() => AppState.currentMessages),
       account: computed(() => AppState.account),
       async createMessage() {
         try {
           await messagesService.createMessage(newMessage.value)
-          newMessage.body = ''
+          newMessage.value.body = null
         } catch (error) {
           logger.error(error)
         }
