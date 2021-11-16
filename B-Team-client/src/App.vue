@@ -23,7 +23,9 @@
         </p>
       </router-link>
       <i class="fas fa-user fa-2x" title="profile" v-else></i>
-      <i class="far fa-envelope fa-2x" title="messages"></i>
+      <router-link class="decor" :to="{ name: 'DmPage' }">
+        <i class="far fa-envelope fa-2x" title="messages"></i>
+      </router-link>
     </div>
   </footer>
 </template>

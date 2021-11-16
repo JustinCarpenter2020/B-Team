@@ -13,13 +13,12 @@
       <div class="col-md-4 col-12 d-none d-md-block">
         <dmUsersComponent :dm-prop="connections" />
       </div>
-      <div :class="{'mobile-hide': mobileHide} " class="d-block d-md-none">
-        <mobileDmUserComponent :dm-prop="connections" />
-      </div>
-      <div class="col-md-5 col-12 ">
-        <div>
-          x
+      <span :class="{'mobile-hide': mobileHide} " class="d-block d-md-none col-12">
+        <div class="row">
+          <mobileDmUserComponent :dm-prop="connections" />
         </div>
+      </span>
+      <div class="col-md-5 col-12 ">
         <router-view></router-view>
       </div>
     </div>
