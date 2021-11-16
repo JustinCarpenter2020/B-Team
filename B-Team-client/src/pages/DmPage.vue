@@ -10,13 +10,11 @@
       <div class="col-6 d-block d-md-none text-light text-center">
         Messages
       </div>
-      <div class="col-3 d-block d-md-none text-light">
-        settings
-      </div>
-      <div class="col-md-4 col-12">
+      <mobileDmUserComponent :dm-prop="connections" />
+      <div class="col-md-4 col-12 d-none d-md-block">
         <dmUsersComponent :dm-prop="connections" />
       </div>
-      <div class="col-md-5 col-12">
+      <div class="col-md-5 col-12 d-none d-md-block">
         <router-view></router-view>
       </div>
     </div>
