@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
       <div class="col-md-6 my-4">

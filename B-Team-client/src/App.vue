@@ -5,16 +5,47 @@
   <main>
     <router-view />
   </main>
+  <footer class="d-block d-md-none text-light mb-2 ">
+    <div class="d-flex justify-content-around">
+      <router-link class="decor" :to="{ name: 'Home' }">
+        <p class="text">
+          <i class="fas fa-home fa-2x" title="home"></i>
+        </p>
+      </router-link>
+      <router-link class="text-light link" v-if="account.name" :to="{name: 'Profile', params: {id: account.id}}">
+        <p class="text" v-if="account.picture">
+          <img
+            :src="account.picture"
+            alt="user photo"
+            height="40"
+            class="rounded"
+          />
+        </p>
+      </router-link>
+      <i class="fas fa-user fa-2x" title="profile" v-else></i>
+      <i class="far fa-envelope fa-2x" title="messages"></i>
+    </div>
+  </footer>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import { AuthService } from './services/AuthService'
 export default {
   name: 'App',
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      account: computed(() => AppState.account),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        if (await Notification.confirmAction('Are you sure you want to log out', 'you will be missed', 'info', 'logout')) {
+          AuthService.logout({ returnTo: window.location.origin })
+        }
+      }
     }
   }
 }
@@ -28,6 +59,11 @@ p{
 .dark{
     background-color: #1c1f24c2 ;
 }
+
+  .decor{
+          text-decoration: none;
+          color: white;
+        }
 
 .opacity{
   opacity: .5;
@@ -56,5 +92,13 @@ p{
 
 .cursor{
   cursor: pointer;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
 }
 </style>

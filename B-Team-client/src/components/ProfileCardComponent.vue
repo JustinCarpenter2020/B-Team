@@ -5,7 +5,7 @@
       <img class="img-top" :src="profile.banner" alt="">
       <img class="profileImg mx-4" :src="profile.picture" />
       <p class="mx-4">
-        BIO HERE
+        {{ profile.bio }}
       </p>
     </div>
     <!-- <div class="card-footer border-top">

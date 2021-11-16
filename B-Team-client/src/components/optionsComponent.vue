@@ -117,9 +117,4 @@ export default {
           width: 1em;
         }
 
-        .decor{
-          text-decoration: none;
-          color: white;
-        }
-
 </style>
