@@ -7,6 +7,9 @@
       <p class="mx-4">
         {{ profile.bio }}
       </p>
+      <button class=" btn btn-outline-info">
+        Follow
+      </button>
     </div>
     <!-- <div class="card-footer border-top">
       <div class="row justify-content-around">
