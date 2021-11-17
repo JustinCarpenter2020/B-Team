@@ -45,8 +45,10 @@
           </button>
         </div>
       </div>
-      <div class="row d-none reveal-height animate_animated animate__slideInUp" id="gifs">
-        gifs here!
+      <div class="d-none reveal-height  animate_animated animate__slideInUp" id="gifs">
+        <div class="masonry-with-columns">
+          <gifComponent v-for="(g, index) in gifs" :key="index" :gif="g" />
+        </div>
       </div>
     </div>
   </div>
@@ -77,6 +79,7 @@ export default {
       route,
       messages: computed(() => AppState.currentMessages),
       account: computed(() => AppState.account),
+      gifs: computed(() => AppState.gifs),
       async createMessage() {
         try {
           await messagesService.createMessage(newMessage.value)
@@ -94,13 +97,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .height{
   height: 80vh;
 }
 
 .reveal-height{
   height: 40vh;
+  overflow-y: auto;
+  // overflow-x: hidden;
 }
 
 .input{
@@ -366,6 +371,19 @@ export default {
   /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
+}
+
+.masonry-with-columns {
+  columns: 2 200px;
+  column-gap: 1rem;
+  div {
+    width: 150px;
+    background: #EC985A;
+    color: white;
+    margin: 0 1rem 1rem 0;
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 </style>
