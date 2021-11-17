@@ -36,34 +36,44 @@
                  placeholder="Message..."
           >
         </div>
-        <div class="col-1">
-          <i class="fas fa-microphone"></i>
-        </div>
-        <div class="col-1">
-          <i class="fas fa-image"></i>
+        <div class="col-2 d-flex align-items-center">
+          <i class="fas fa-image fa-2x" @click="revealGifs"></i>
         </div>
         <div class="col-1">
           <button class="btn btn-info" :class="{disabled: !newMessage.body}" @click="createMessage">
-            <i class="fas fa-plus-circle"></i>
+            <i class="far fa-paper-plane"></i>
           </button>
         </div>
+      </div>
+      <div class="row d-none reveal-height animate_animated animate__slideInUp" id="gifs">
+        gifs here!
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, ref } from '@vue/runtime-core'
+import { computed, onMounted, ref } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
 import { messagesService } from '../services/MessagesService'
+import { gifService } from '../services/GifService'
 export default {
   setup() {
     const route = useRoute()
+    let reveal = ref(false)
     const newMessage = ref({ to: route.params.id })
+    onMounted(async() => {
+      try {
+        await gifService.getTrendingGifs()
+      } catch (error) {
+        logger.error(error)
+      }
+    })
     return {
       newMessage,
+      reveal,
       route,
       messages: computed(() => AppState.currentMessages),
       account: computed(() => AppState.account),
@@ -74,6 +84,10 @@ export default {
         } catch (error) {
           logger.error(error)
         }
+      },
+      revealGifs() {
+        reveal = !reveal
+        reveal === true ? document.getElementById('gifs').classList.remove('d-none') : document.getElementById('gifs').classList.add('d-none')
       }
     }
   }
@@ -83,6 +97,10 @@ export default {
 <style lang="scss" scoped>
 .height{
   height: 80vh;
+}
+
+.reveal-height{
+  height: 40vh;
 }
 
 .input{

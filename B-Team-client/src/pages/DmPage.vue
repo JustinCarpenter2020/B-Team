@@ -1,15 +1,15 @@
 <template>
   <div class="container-fluid">
-    <div class="row mt-3">
+    <div class="row mt-md-3">
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
-      <div class="col-3 d-block d-md-none">
+      <!-- <div class="col-3 d-block d-md-none">
         <img class="img-fluid circle-profile" :src="account.picture" alt="">
       </div>
       <div class="col-6 d-block d-md-none text-light text-center">
         Messages
-      </div>
+      </div> -->
       <div class="col-md-4 col-12 d-none d-md-block">
         <dmUsersComponent :dm-prop="connections" />
       </div>

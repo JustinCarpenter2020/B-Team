@@ -5,7 +5,7 @@
   <main>
     <router-view />
   </main>
-  <footer class="d-block d-md-none text-light mb-2 ">
+  <footer class="d-block d-md-none text-light my-2 ">
     <div class="d-flex justify-content-around">
       <router-link class="decor" :to="{ name: 'Home' }">
         <p class="text">
