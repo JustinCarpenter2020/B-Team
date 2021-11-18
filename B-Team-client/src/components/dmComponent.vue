@@ -26,6 +26,12 @@
     </div>
     <div class="card-footer">
       <div class="row">
+        <div class="col-12 text-center mb-3 preview" :class="{'d-none' : !activeGif}">
+          <img class="preview-height" :src="activeGif" alt="">
+          <div class="topright" @click="clearImage">
+            X
+          </div>
+        </div>
         <div class="col-8">
           <input type="text"
                  class="form-control input text-white"
@@ -45,7 +51,19 @@
           </button>
         </div>
       </div>
-      <div class="d-none reveal-height  animate_animated animate__slideInUp" id="gifs">
+      <div class="d-none reveal-height mt-4  animate_animated animate__slideInUp" id="gifs">
+        <div class="input-group mb-3">
+          <button class="input-group-text" @click="searchGifs">
+            <i class="fas fa-search"></i>
+          </button>
+          <input type="text"
+                 v-model="gifQuery"
+                 class="form-control bg-gray"
+                 placeholder="Search Gifs..."
+                 aria-label="Recipient's username"
+                 aria-describedby="basic-addon2"
+          >
+        </div>
         <div class="masonry-with-columns">
           <gifComponent v-for="(g, index) in gifs" :key="index" :gif="g" />
         </div>
@@ -65,6 +83,7 @@ export default {
   setup() {
     const route = useRoute()
     let reveal = ref(false)
+    const gifQuery = ref('')
     const newMessage = ref({ to: route.params.id })
     onMounted(async() => {
       try {
@@ -75,11 +94,13 @@ export default {
     })
     return {
       newMessage,
+      gifQuery,
       reveal,
       route,
       messages: computed(() => AppState.currentMessages),
       account: computed(() => AppState.account),
       gifs: computed(() => AppState.gifs),
+      activeGif: computed(() => AppState.activeGif),
       async createMessage() {
         try {
           await messagesService.createMessage(newMessage.value)
@@ -91,6 +112,19 @@ export default {
       revealGifs() {
         reveal = !reveal
         reveal === true ? document.getElementById('gifs').classList.remove('d-none') : document.getElementById('gifs').classList.add('d-none')
+      },
+      async searchGifs() {
+        try {
+          if (gifQuery.value.length > 0) {
+            await gifService.searchGifs(gifQuery.value)
+            gifQuery.value = ''
+          }
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      clearImage() {
+        AppState.activeGif = null
       }
     }
   }
@@ -102,10 +136,31 @@ export default {
   height: 80vh;
 }
 
+// .preview{
+//   position: relative;
+// }
+
+.topright {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 18px;
+}
+
 .reveal-height{
-  height: 40vh;
+  height: 28vh;
   overflow-y: auto;
   // overflow-x: hidden;
+}
+
+.preview-height{
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.bg-gray{
+  background-color: #e9ecef;
 }
 
 .input{
@@ -374,13 +429,12 @@ export default {
 }
 
 .masonry-with-columns {
-  columns: 2 200px;
-  column-gap: 1rem;
+  columns: 2 125px;
+  column-gap: .5rem;
   div {
     width: 150px;
-    background: #EC985A;
     color: white;
-    margin: 0 1rem 1rem 0;
+    margin: 0 .5rem .5rem 0;
     display: inline-block;
     width: 100%;
   }
