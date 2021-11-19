@@ -1,14 +1,14 @@
 <template>
   <div class="container-fluid">
     <div class="row mt-4">
-      <div class="col-md-3">
+      <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
       <div class="col-md-6 mt-4 text-center text-white mb-5">
         <postComponent :post-prop="post" />
         <commentComponent v-for="c in comments" :key="c.id" :comment-prop="c" />
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3  d-none d-md-block">
         <followComponent />
       </div>
     </div>

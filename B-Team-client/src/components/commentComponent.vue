@@ -5,7 +5,7 @@
         <div class="row text-right" v-if="account.id == commentProp.creatorId">
           <div class="col-12">
             <div class="dropdown">
-              <button class="dropdown-toggle"
+              <button class="dropdown-toggle border-none"
                       type="button"
                       id="dropdownMenuButton"
                       data-toggle="dropdown"
@@ -114,6 +114,10 @@ export default {
 .profile{
   border-radius: 50%;
   height: 4rem;
+}
+
+.border-none{
+  border: none;
 }
 
 </style>
