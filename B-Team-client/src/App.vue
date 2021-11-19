@@ -58,6 +58,30 @@ p{
   font-family: 'Roboto', sans-serif;
 }
 
+// <-------------scrollbar ---------->
+.scrollbar:hover::-webkit-scrollbar-thumb {
+    visibility:visible;
+}
+
+.scrollbar::-webkit-scrollbar-track
+{
+  // border: 1px solid #f7f7f7;
+  background-color: #14171A;
+}
+
+.scrollbar::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb
+{
+  border-radius: 30px;
+  background-color: #1DA1F2;
+  visibility:hidden;
+}
+
 .dark{
     background-color: #1c1f24c2 ;
 }

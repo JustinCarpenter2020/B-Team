@@ -1,6 +1,6 @@
 <template>
   <div class="card height mt-4 text-light border-transparentWhite">
-    <div class="card-body scroll">
+    <div class="card-body scroll scrollbar">
       <div class="text-light mt-5" v-for="m in messages" :key="m.id">
         <div class="text-right" v-if="m.to == account.id">
           <p class="talk-bubble tri-right right-in round from-them">
@@ -51,7 +51,7 @@
           </button>
         </div>
       </div>
-      <div class="d-none reveal-height mt-4  animate_animated animate__slideInUp" id="gifs">
+      <div class="d-none reveal-height scrollbar mt-4  animate_animated animate__slideInUp" id="gifs">
         <div class="input-group mb-3">
           <button class="input-group-text" @click="searchGifs">
             <i class="fas fa-search"></i>
