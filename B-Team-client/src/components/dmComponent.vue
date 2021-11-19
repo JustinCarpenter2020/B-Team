@@ -1,5 +1,5 @@
 <template>
-  <div class="card height mt-4 text-light border-transparentWhite">
+  <div class="card height mt-md-4 mt-2 text-light border-transparentWhite">
     <div class="card-body scroll scrollbar">
       <div class="text-light mt-5" v-for="m in messages" :key="m.id">
         <div class="text-right" v-if="m.to == account.id">
