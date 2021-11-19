@@ -166,7 +166,7 @@ export default {
 .input{
   border-radius: 25px;
   color: #F5F8FA;
-  background-color: #1c1f24c2 ;
+  background-color: #1c1f24c2 !important ;
 }
 
 .input::placeholder {
