@@ -1,6 +1,11 @@
 <template>
   <div class="container-fluid">
-    <div class="row mt-4">
+    <div class="d-block d-md-none mt-3 mb-0">
+      <router-link :to="{name: 'Home'}">
+        <i class="fas fa-chevron-left  text-light"></i>
+      </router-link>
+    </div>
+    <div class="row mt-md-4">
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>

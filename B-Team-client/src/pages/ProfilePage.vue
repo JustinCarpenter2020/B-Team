@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div class="d-block d-md-none my-2">
+      <router-link :to="{name: 'Home'}">
+        <i class="fas fa-chevron-left  text-light"></i>
+      </router-link>
+    </div>
     <div class="row">
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
