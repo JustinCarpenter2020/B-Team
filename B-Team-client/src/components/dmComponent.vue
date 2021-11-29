@@ -8,7 +8,7 @@
               {{ m.body }}
             </span>
           </p>
-          <img v-else :src="m.body" alt="">
+          <img v-else class="w-50 rounded" :src="m.body" alt="">
           <p class="text-right" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>
@@ -19,7 +19,7 @@
               {{ m.body }}
             </span>
           </p>
-          <img v-else class="w-50" :src="m.body" alt="">
+          <img v-else class="w-50 rounded" :src="m.body" alt="">
           <p class="text-left" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>

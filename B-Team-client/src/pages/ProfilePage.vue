@@ -11,7 +11,12 @@
       </div>
       <div class="col-md-6 mb-4">
         <ProfileCardComponent />
-        <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
+        <div v-if="posts.length > 0">
+          <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
+        </div>
+        <div v-else class="col-12 text-center text-light mt-4">
+          <p>Oh no, no posts yet....</p>
+        </div>
       </div>
       <div class="col-3 d-none d-md-block">
         <trendingComponent />
