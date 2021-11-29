@@ -14,6 +14,7 @@ class MessagesService {
   async createMessage(newMessage) {
     const res = await api.post('api/messages', newMessage)
     AppState.currentMessages.push(res.data)
+    AppState.activeGif = null
   }
 }
 

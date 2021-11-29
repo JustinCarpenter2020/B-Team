@@ -53,21 +53,23 @@
           </button>
         </div>
       </div>
-      <div class="d-none reveal-height scrollbar mt-4  animate_animated animate__slideInUp" id="gifs">
-        <div class="input-group mb-3">
-          <button class="input-group-text" @click="searchGifs">
-            <i class="fas fa-search"></i>
-          </button>
-          <input type="text"
-                 v-model="gifQuery"
-                 class="form-control bg-gray"
-                 placeholder="Search Gifs..."
-                 aria-label="Recipient's username"
-                 aria-describedby="basic-addon2"
-          >
-        </div>
-        <div class="masonry-with-columns">
-          <gifComponent v-for="(g, index) in gifs" :key="index" :gif="g" />
+      <div v-if="reveal" class=" reveal-height scrollbar mt-4">
+        <div class="animate__animated animate__slideInUp" id="gifs">
+          <div class="input-group mb-3">
+            <button class="input-group-text" @click="searchGifs">
+              <i class="fas fa-search"></i>
+            </button>
+            <input type="text"
+                   v-model="gifQuery"
+                   class="form-control bg-gray"
+                   placeholder="Search Gifs..."
+                   aria-label="Recipient's username"
+                   aria-describedby="basic-addon2"
+            >
+          </div>
+          <div class="masonry-with-columns">
+            <gifComponent v-for="(g, index) in gifs" :key="index" :gif="g" />
+          </div>
         </div>
       </div>
     </div>
@@ -81,10 +83,11 @@ import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
 import { messagesService } from '../services/MessagesService'
 import { gifService } from '../services/GifService'
+import 'animate.css'
 export default {
   setup() {
     const route = useRoute()
-    let reveal = ref(false)
+    const reveal = ref(false)
     const gifQuery = ref('')
     const newMessage = ref({ to: route.params.id })
     onMounted(async() => {
@@ -107,9 +110,11 @@ export default {
         try {
           if (!newMessage.value.body) {
             newMessage.value.body = AppState.activeGif
+            reveal.value = false
             await messagesService.createMessage(newMessage.value)
             newMessage.value.body = null
           } else if (AppState.activeGif) {
+            reveal.value = false
             await messagesService.createMessage(newMessage.value)
             newMessage.value.body = AppState.activeGif
             await messagesService.createMessage(newMessage.value)
@@ -123,8 +128,7 @@ export default {
         }
       },
       revealGifs() {
-        reveal = !reveal
-        reveal === true ? document.getElementById('gifs').classList.remove('d-none') : document.getElementById('gifs').classList.add('d-none')
+        reveal.value = !reveal.value
       },
       async searchGifs() {
         try {
