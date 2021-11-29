@@ -16,8 +16,7 @@ class ConnectionsService {
   async unFollow(id) {
     const res = await api.delete('api/connections/' + id)
     logger.log(res.data)
-    const index = AppState.connections.findIndex(c => c.id === id)
-    AppState.connections.splice(index, 1, 0)
+    AppState.connections = AppState.connections.filter(c => c.id !== id)
   }
 }
 

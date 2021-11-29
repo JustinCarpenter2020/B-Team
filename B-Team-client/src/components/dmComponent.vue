@@ -3,21 +3,23 @@
     <div class="card-body scroll scrollbar">
       <div class="text-light mt-5" v-for="m in messages" :key="m.id">
         <div class="text-right" v-if="m.to == account.id">
-          <p class="talk-bubble tri-right right-in round from-them">
+          <p class="talk-bubble tri-right right-in round from-them" v-if="!m.body.includes('giphy')">
             <span class="">
               {{ m.body }}
             </span>
           </p>
+          <img v-else :src="m.body" alt="">
           <p class="text-right" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>
         </div>
         <div class="" v-else>
-          <p class="text-left talk-bubble tri-right left-in round from-me">
+          <p class="text-left talk-bubble tri-right left-in round from-me" v-if="!m.body.includes('giphy')">
             <span>
               {{ m.body }}
             </span>
           </p>
+          <img v-else class="w-50" :src="m.body" alt="">
           <p class="text-left" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>
@@ -46,8 +48,8 @@
           <i class="fas fa-image fa-2x" @click="revealGifs"></i>
         </div>
         <div class="col-1">
-          <button class="btn btn-info" :class="{disabled: !newMessage.body}" @click="createMessage">
-            <i class="far fa-paper-plane"></i>
+          <button class="btn btn-info" :class="{disabled: !newMessage.body && !activeGif}" @click="createMessage">
+            <i class="far fa-paper-plane" title="send"></i>
           </button>
         </div>
       </div>
@@ -103,8 +105,19 @@ export default {
       activeGif: computed(() => AppState.activeGif),
       async createMessage() {
         try {
-          await messagesService.createMessage(newMessage.value)
-          newMessage.value.body = null
+          if (!newMessage.value.body) {
+            newMessage.value.body = AppState.activeGif
+            await messagesService.createMessage(newMessage.value)
+            newMessage.value.body = null
+          } else if (AppState.activeGif) {
+            await messagesService.createMessage(newMessage.value)
+            newMessage.value.body = AppState.activeGif
+            await messagesService.createMessage(newMessage.value)
+            newMessage.value.body = null
+          } else {
+            await messagesService.createMessage(newMessage.value)
+            newMessage.value.body = null
+          }
         } catch (error) {
           logger.error(error)
         }
