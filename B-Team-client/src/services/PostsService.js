@@ -18,8 +18,8 @@ class PostsService {
 
   async create(post) {
     logger.log(post)
-    await api.post('api/posts', post)
-    // AppState.posts.push(res.data)
+    const res = await api.post('api/posts', post)
+    return res.data.id
   }
 
   async like(id) {

@@ -4,13 +4,17 @@
   </header>
   <main>
     <router-view />
+    <div v-if="!messagePage">
+      <button class="fab d-md-none d-block" data-toggle="modal" data-target="#createPost">
+        <i class="fas fa-kiwi-bird fa-2x mt-3"></i>
+      </button>
+      <mobileCreatePostModal />
+    </div>
   </main>
   <footer class="d-block d-md-none text-light my-2 ">
     <div class="d-flex justify-content-around">
       <router-link class="decor" :to="{ name: 'Home' }">
-        <p class="text">
-          <i class="fas fa-home fa-2x" title="home"></i>
-        </p>
+        <i class="fas fa-home fa-2x" title="home"></i>
       </router-link>
       <router-link class="text-light link" v-if="account.name" :to="{name: 'Profile', params: {id: account.id}}">
         <p class="text" v-if="account.picture">
@@ -18,7 +22,7 @@
             :src="account.picture"
             alt="user photo"
             height="40"
-            class="rounded"
+            class="rounded accountImg"
           />
         </p>
       </router-link>
@@ -34,12 +38,15 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import { AuthService } from './services/AuthService'
+import { useRoute } from 'vue-router'
 export default {
   name: 'App',
   setup() {
+    const route = useRoute()
     return {
       appState: computed(() => AppState),
       account: computed(() => AppState.account),
+      messagePage: computed(() => route.name === 'MessagePage'),
       async login() {
         AuthService.loginWithPopup()
       },
@@ -56,6 +63,29 @@ export default {
 @import "./assets/scss/main.scss";
 p{
   font-family: 'Roboto', sans-serif;
+}
+
+.accountImg{
+  height: 3rem;
+}
+
+.fab{
+  z-index: 10;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  bottom: 15%;
+  right: 5%;
+  background-color: $info;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  // box-shadow: 2px 2px 10px rgba(10,10,10,0.3);
+  border: 2px solid #1689d1;
+  transition: all 0.2s ease-in-out;
 }
 
 // <-------------scrollbar ---------->
