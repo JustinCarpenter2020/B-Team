@@ -1,9 +1,14 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-transparentWhiteb ">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-transparentWhiteb mobile-center">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <span>
+        <span class="d-none d-md-block">
           <img class="logo" src="../assets/img/logo.png" alt=""> HERD
+        </span>
+      </div>
+      <div class="w-100 d-flex justify-content-center">
+        <span class="d-block d-md-none">
+          <img class="logo" src="../assets/img/logo.png" alt="">
         </span>
       </div>
     </router-link>

@@ -81,8 +81,8 @@ p{
   bottom: 15%;
   right: 5%;
   background-color: $dark;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   cursor: pointer;
   // box-shadow: 2px 2px 10px rgba(10,10,10,0.3);
