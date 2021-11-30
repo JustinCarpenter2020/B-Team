@@ -27,16 +27,21 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { profilesService } from '../services/ProfilesService'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import { trendingService } from '../services/TrendingService'
 export default {
   setup() {
     const route = useRoute()
-    onMounted(async() => {
+    watchEffect(async() => {
       await profilesService.getProfile(route.params.id)
       await profilesService.getAllPostsByProfileId(route.params.id)
+    })
+    onMounted(async() => {
+      await trendingService.getTrending()
+      await trendingService.getPeople()
     })
     return {
       posts: computed(() => AppState.posts)

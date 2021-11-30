@@ -7,9 +7,17 @@
         <div class="col-6">
           <img class="profileImg mx-4" :src="profile.picture" />
         </div>
-        <div class=" col-6 text-right">
-          <button class="btn btn-outline-info m-2">
+        <div class=" col-6 text-right" v-if="account.name != profile.name">
+          <button class="btn btn-outline-info m-2" v-if="!followedIds.includes(profile.id)" @click="follow(profile.id)">
             Follow
+          </button>
+          <button class="btn btn-outline-danger m-2" v-else @click="unfollow(profile.id)">
+            UnFollow
+          </button>
+        </div>
+        <div class="col-6 text-right" v-else>
+          <button class="btn btn-outline-info m-2">
+            Edit Account
           </button>
         </div>
         <div class="col-md-8">
@@ -29,30 +37,46 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card-footer border-top">
-      <div class="row justify-content-around">
-        <div class="col-4">
-          <p>Tweets</p>
-        </div>
-        <div class="col-4">
-          <p>Media</p>
-        </div>
-        <div class="col-4">
-          <p>Likes</p>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
+import { connectionsService } from '../services/ConnectionsService'
 
 export default {
   setup() {
+    const followedIds = ref([])
+    watchEffect(() => {
+      followedIds.value = []
+      AppState.connections.forEach(c => followedIds.value.push(c.user2))
+    })
     return {
-      profile: computed(() => AppState.activeProfile)
+      followedIds,
+      profile: computed(() => AppState.activeProfile),
+      account: computed(() => AppState.account),
+      async follow(id) {
+        try {
+          if (this.account.name) {
+            await connectionsService.newConnection(this.account.id, id)
+          } else {
+            Notification.toast('Please Login to follow other accounts!')
+          }
+        } catch (error) {
+          logger.error(error)
+        }
+        // Notification.toast('You must buy premium for that feature', 'info')
+      },
+      async unFollow(id) {
+        try {
+          const found = AppState.connections.find(c => c.user2 === id)
+          await connectionsService.unFollow(found.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   }
 }

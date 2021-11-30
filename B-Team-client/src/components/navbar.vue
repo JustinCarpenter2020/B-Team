@@ -3,7 +3,7 @@
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <span>
-          <i class="fas fa-bold"></i>-Team
+          <img class="logo" src="../assets/img/logo.png" alt=""> HERD
         </span>
       </div>
     </router-link>
@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style scoped>
+
+.logo{
+  height: 50px;
+}
 .dropdown-menu {
   user-select: none;
   display: block;

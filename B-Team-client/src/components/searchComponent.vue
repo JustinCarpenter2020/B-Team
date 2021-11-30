@@ -13,7 +13,7 @@
                v-model="state.newPost.body"
                id=""
                aria-describedby="helpId"
-               placeholder="What's Happening?"
+               placeholder="Be Heard..."
         >
       </div>
     </div>

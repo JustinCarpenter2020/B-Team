@@ -23,10 +23,10 @@ import { AppState } from '../AppState'
 import { trendingService } from '../services/TrendingService'
 export default {
   setup() {
-    onMounted(() => {
-      postsService.getPosts()
-      trendingService.getTrending()
-      trendingService.getPeople()
+    onMounted(async() => {
+      await postsService.getPosts()
+      await trendingService.getTrending()
+      await trendingService.getPeople()
     })
     return {
       posts: computed(() => AppState.posts)

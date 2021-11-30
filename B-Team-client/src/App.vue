@@ -6,7 +6,9 @@
     <router-view />
     <div v-if="!messagePage">
       <button class="fab d-md-none d-block" data-toggle="modal" data-target="#createPost">
-        <i class="fas fa-kiwi-bird fa-2x mt-3"></i>
+        <div>
+          <img class="img-fluid mt-3" src="https://buffalofoodtours.com/wp-content/uploads/2020/04/Final-Design-TB-Site-Icon.png" alt="">
+        </div>
       </button>
       <mobileCreatePostModal />
     </div>
@@ -78,13 +80,13 @@ p{
   align-items: center;
   bottom: 15%;
   right: 5%;
-  background-color: $info;
-  width: 80px;
-  height: 80px;
+  background-color: $dark;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   cursor: pointer;
   // box-shadow: 2px 2px 10px rgba(10,10,10,0.3);
-  border: 2px solid #1689d1;
+  border: 3px solid #1689d1;
   transition: all 0.2s ease-in-out;
 }
 
