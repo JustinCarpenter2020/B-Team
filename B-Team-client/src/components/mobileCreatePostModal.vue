@@ -58,14 +58,15 @@ import { router } from '../router'
 import $ from 'jquery'
 export default {
   setup() {
-    let newPost = ref({})
+    const newPost = ref({})
     return {
       newPost,
       async createPost() {
         try {
           const newId = await postsService.create(newPost.value)
           router.push({ name: 'postDetails', params: { id: newId } })
-          newPost = ref({})
+          newPost.value.body = null
+          newPost.value.imgUrl = null
           $('#createPost').modal('hide')
         } catch (error) {
           logger.error(error)

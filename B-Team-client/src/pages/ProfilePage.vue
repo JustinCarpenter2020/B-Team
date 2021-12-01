@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <ProfileCardComponent />
-        <div v-if="posts.length > 0">
+        <div v-if="posts.length > 0" class="">
           <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
         </div>
         <div v-else class="col-12 text-center text-light mt-4">
@@ -52,5 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.scroll{
+  height: 25vh;
+}
 </style>
