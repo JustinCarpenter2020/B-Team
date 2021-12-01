@@ -1,6 +1,6 @@
 <template>
   <div class="card height mt-md-4 mt-2 text-light border-transparentWhite">
-    <div class="card-body scroll scrollbar">
+    <div class="card-body scroll scrollbar" id="messages">
       <div class="text-light mt-5" v-for="m in messages" :key="m.id">
         <div class="text-right" v-if="m.to == account.id">
           <p class="talk-bubble tri-right right-in round from-them" v-if="!m.body.includes('giphy')">
@@ -73,6 +73,7 @@
         </div>
       </div>
     </div>
+    <audio id="messageAlert"><source src="../assets/audio/messageAlert.mp3"></audio>
   </div>
 </template>
 
@@ -93,6 +94,8 @@ export default {
     onMounted(async() => {
       try {
         await gifService.getTrendingGifs()
+        const element = document.getElementById('messages')
+        element.scrollTop = element.scrollHeight
       } catch (error) {
         logger.error(error)
       }
@@ -123,6 +126,8 @@ export default {
             await messagesService.createMessage(newMessage.value)
             newMessage.value.body = null
           }
+          this.updateScroll()
+          this.alertMessage()
         } catch (error) {
           logger.error(error)
         }
@@ -142,6 +147,15 @@ export default {
       },
       clearImage() {
         AppState.activeGif = null
+      },
+      updateScroll() {
+        const element = document.getElementById('messages')
+        element.scrollTop = element.scrollHeight
+      },
+      alertMessage() {
+        const myAudio = document.getElementById('messageAlert')
+        myAudio.currentTime = 2.1
+        myAudio.play()
       }
     }
   }
@@ -153,9 +167,9 @@ export default {
   height: 80vh;
 }
 
-// .preview{
-//   position: relative;
-// }
+#messages{
+  scroll-behavior: smooth;
+}
 
 .topright {
   position: absolute;
