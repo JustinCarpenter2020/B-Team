@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <img @click="attachGif" class="h-100 w-100" :src="gif.url" />
+  <div class="loader">
+    <img @click="attachGif" loading="lazy" class="h-100 w-100" :src="gif.url" />
   </div>
 </template>
 
@@ -21,4 +21,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loader {
+  background-image: url('../assets/img/loader.gif');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80px;
+  min-width: 80px;
+}
+
 </style>

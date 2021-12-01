@@ -139,8 +139,10 @@ export default {
       },
       async deletePost() {
         try {
-          await postsService.deletePost(props.postProp.id)
-          Notification.toast('deleted', 'success')
+          if (await Notification.confirmAction('Delete Post?')) {
+            await postsService.deletePost(props.postProp.id)
+            Notification.toast('deleted', 'success')
+          }
         } catch (error) {
           logger.error(error)
         }
