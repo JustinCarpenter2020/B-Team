@@ -54,7 +54,15 @@ export default {
   border-radius: 8%;
 }
 
-.scroll{
+@media only screen and (max-width: 600px) {
+  .scroll{
   height: 64vh;
+}
+}
+
+@media only screen and (min-width: 600px) {
+.scroll{
+  height: 75vh;
+}
 }
 </style>

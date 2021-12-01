@@ -4,11 +4,13 @@
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
-      <div class="col-md-6 my-4 scrollbar scroll">
+      <div class="col-md-6 my-4">
         <searchComponent />
-        <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
+        <div class=" scroll scrollbar">
+          <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
+        </div>
       </div>
-      <div class="col-3 d-none d-md-block">
+      <div class="col-3 d-none d-md-block scroll scrollbar">
         <trendingComponent />
         <followComponent />
       </div>
@@ -37,7 +39,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scroll{
+
+@media only screen and (max-width: 600px) {
+  .scroll{
   height: 68vh;
 }
+}
+
+// @media only screen and (min-width: 600px) {
+// .scroll{
+//   // height: 68vh;
+// }
+// }
+
 </style>
