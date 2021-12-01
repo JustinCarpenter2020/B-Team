@@ -30,8 +30,8 @@
             @{{ profile.name.split('@')[1] }}
           </p>
         </div>
-        <div class="col">
-          <p class="mx-4">
+        <div class="col-12">
+          <p class="mx-3">
             {{ profile.bio }}
           </p>
         </div>
@@ -103,7 +103,7 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { connectionsService } from '../services/ConnectionsService'
 import { accountService } from '../services/AccountService'
-
+import $ from 'jquery'
 export default {
   setup() {
     const followedIds = ref([])
@@ -141,6 +141,7 @@ export default {
       async editAccount() {
         try {
           await accountService.editAccount()
+          $('#editAccount').modal('hide')
         } catch (error) {
           logger.error(error)
         }

@@ -13,8 +13,9 @@ class AccountService {
   }
 
   async editAccount() {
-    const res = await api.put(AppState.account)
+    const res = await api.put('/account', AppState.account)
     AppState.account = res.data
+    AppState.activeProfile = res.data
   }
 }
 
