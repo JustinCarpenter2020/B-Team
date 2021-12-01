@@ -10,7 +10,7 @@ class ProfilesService {
   }
 
   async getPostsByProfileId(id) {
-    const posts = await dbContext.Posts.find({ creatorId: id }).sort('-createdAt')
+    const posts = await dbContext.Posts.find({ creatorId: id }).sort('-createdAt').populate('creator')
     if (!posts) {
       throw new Error('This user has no posts')
     }

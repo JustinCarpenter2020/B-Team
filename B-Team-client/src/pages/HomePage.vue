@@ -4,7 +4,7 @@
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
-      <div class="col-md-6 my-4">
+      <div class="col-md-6 my-4 scrollbar scroll">
         <searchComponent />
         <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
       </div>
@@ -37,5 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.scroll{
+  height: 68vh;
+}
 </style>

@@ -158,5 +158,6 @@ p{
    bottom: 0;
    width: 100%;
    text-align: center;
+   height: 20vh;
 }
 </style>

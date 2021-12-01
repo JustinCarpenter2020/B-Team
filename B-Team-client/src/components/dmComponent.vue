@@ -8,7 +8,7 @@
               {{ m.body }}
             </span>
           </p>
-          <img v-else class="w-50 rounded" :src="m.body" alt="">
+          <img v-else class="w-50 rounded loader" :src="m.body" alt="">
           <p class="text-right" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>
@@ -19,7 +19,7 @@
               {{ m.body }}
             </span>
           </p>
-          <img v-else class="w-50 rounded" :src="m.body" alt="">
+          <img v-else class="w-50 rounded loader" :src="m.body" alt="">
           <p class="text-left" v-if="m.createdAt">
             {{ new Date(m.createdAt).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) }}
           </p>
@@ -28,7 +28,7 @@
     </div>
     <div class="card-footer">
       <div class="row">
-        <div class="col-12 text-center mb-3 preview" :class="{'d-none' : !activeGif}">
+        <div class="col-12 text-center mb-3 preview loader" :class="{'d-none' : !activeGif}">
           <img class="preview-height" :src="activeGif" alt="">
           <div class="topright" @click="clearImage">
             X
@@ -182,6 +182,15 @@ export default {
   height: 28vh;
   overflow-y: auto;
   // overflow-x: hidden;
+}
+
+.loader {
+  background-image: url('../assets/img/loader.gif');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80px;
+  min-width: 80px;
 }
 
 .preview-height{

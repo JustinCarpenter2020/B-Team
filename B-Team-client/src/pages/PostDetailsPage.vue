@@ -9,7 +9,7 @@
       <div class="col-md-3 d-none d-md-block">
         <optionsComponent />
       </div>
-      <div class="col-md-6 mt-4 text-center text-white mb-5">
+      <div class="col-md-6 mt-4 text-center text-white mb-5 scroll scrollbar">
         <postComponent :post-prop="post" />
         <commentComponent v-for="c in comments" :key="c.id" :comment-prop="c" />
       </div>
@@ -52,5 +52,9 @@ export default {
 <style lang="scss" scoped>
 .rounded{
   border-radius: 8%;
+}
+
+.scroll{
+  height: 64vh;
 }
 </style>

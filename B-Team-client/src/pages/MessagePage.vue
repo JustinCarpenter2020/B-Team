@@ -18,7 +18,9 @@ export default {
   setup() {
     const route = useRoute()
     watchEffect(async() => {
-      await messagesService.getMessages(route.params.id)
+      if (route.name === 'MessagePage') {
+        await messagesService.getMessages(route.params.id)
+      }
     })
     return {
       account: computed(() => AppState.account)
