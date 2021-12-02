@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-6 my-4">
         <searchComponent />
-        <div class=" scroll scrollbar">
+        <div class="scroll scrollbar">
           <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
         </div>
       </div>
@@ -42,14 +42,18 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .scroll{
-  height: 68vh;
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 }
 
-// @media only screen and (min-width: 600px) {
-// .scroll{
-//   // height: 68vh;
-// }
-// }
+@media only screen and (min-width: 600px) {
+.scroll{
+  height: 68vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+}
 
 </style>

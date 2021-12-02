@@ -11,7 +11,9 @@ class CommentsService {
 
   async createComment(newComment) {
     const res = await api.post('api/comments', newComment)
-    AppState.comments.push(res.data)
+
+    AppState.comments = [res.data, ...AppState.comments]
+    logger.log(AppState.comments)
   }
 
   async like(id) {
