@@ -28,6 +28,7 @@ export class CommentsController extends BaseController {
       delete req.body.commentLikes
       req.body.creatorId = req.userInfo.id
       const comment = await commentsService.create(req.body)
+      comment.creator = req.userInfo
       socketProvider.messageRoom(`Post${comment.postId}Comments`, 'NEW_COMMENT', comment)
     } catch (error) {
       next(error)
