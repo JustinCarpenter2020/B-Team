@@ -1,6 +1,7 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { commentsService } from '../services/CommentsService'
+import { socketProvider } from '../SocketProvider'
 
 export class CommentsController extends BaseController {
   constructor() {
@@ -26,7 +27,8 @@ export class CommentsController extends BaseController {
     try {
       delete req.body.commentLikes
       req.body.creatorId = req.userInfo.id
-      res.send(await commentsService.create(req.body))
+      const comment = await commentsService.create(req.body)
+      socketProvider.messageRoom(`Post${comment.postId}Comments`, 'NEW_COMMENT', comment)
     } catch (error) {
       next(error)
     }

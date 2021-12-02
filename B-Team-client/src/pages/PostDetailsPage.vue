@@ -29,6 +29,7 @@ import { commentsService } from '../services/CommentsService'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { trendingService } from '../services/TrendingService'
+import { socketService } from '../services/SocketService'
 export default {
   setup() {
     const route = useRoute()
@@ -38,6 +39,7 @@ export default {
       postsService.getOne(route.params.id)
       commentsService.getComments(route.params.id)
       trendingService.getPeople()
+      socketService.joinRoom(route.params.id)
     })
     return {
       state,

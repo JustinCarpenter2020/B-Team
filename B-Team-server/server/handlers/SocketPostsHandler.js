@@ -9,17 +9,10 @@ export class SocketPostsHandler extends SocketHandler {
   constructor(io, socket) {
     super(io, socket)
     this
-      .on('NEW_POST', this.newPost)
-      .on('DELETE_POST', this.deletePost)
-      // .on("NEW_MESSAGE", this.new)
+      .on('JOIN_ROOM', this.joinRoom)
   }
 
-  async newPost(payload) {
-    this.socket.emit('NEW_POST', payload)
-  }
-
-  deletePost(payload) {
-    logger.log(payload)
-    this.socket.emit('DELETE_POST', payload)
+  joinRoom(roomName) {
+    this.socket.join(roomName)
   }
 }

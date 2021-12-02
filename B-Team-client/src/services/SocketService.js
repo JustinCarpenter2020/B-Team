@@ -11,6 +11,7 @@ class SocketService extends SocketHandler {
       .on('NEW_POST', this.newPost)
       .on('DELETE_POST', this.deletePost)
       .on('NEW_MESSAGE', this.newMessage)
+      .on('NEW_COMMENT', this.newComment)
   }
 
   onError(e) {
@@ -20,6 +21,11 @@ class SocketService extends SocketHandler {
 
   newPost(payload) {
     AppState.posts.push(payload)
+  }
+
+  newComment(payload) {
+    logger.log('NEW COMMENT', payload)
+    AppState.comments = [payload, ...AppState.comments]
   }
 
   deletePost(payload) {

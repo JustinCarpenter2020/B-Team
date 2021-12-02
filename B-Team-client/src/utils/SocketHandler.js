@@ -40,6 +40,11 @@ export class SocketHandler {
     connected = true
   }
 
+  joinRoom(postId) {
+    this.socket.emit('JOIN_ROOM', `Post${postId}Comments`)
+    logger.log('[JOINED_ROOM]', postId)
+  }
+
   onAuthenticated(auth) {
     logger.log('[SOCKET_AUTHENTICATED]', auth)
     const playback = [...queue]

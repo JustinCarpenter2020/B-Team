@@ -10,9 +10,9 @@ class CommentsService {
   }
 
   async createComment(newComment) {
-    const res = await api.post('api/comments', newComment)
+    await api.post('api/comments', newComment)
 
-    AppState.comments = [res.data, ...AppState.comments]
+    // AppState.comments = [res.data, ...AppState.comments]
     logger.log(AppState.comments)
   }
 
