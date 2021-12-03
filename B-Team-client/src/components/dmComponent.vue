@@ -164,7 +164,7 @@ export default {
 
 <style lang="scss">
 .height{
-  height: 80vh;
+  height: 75vh;
 }
 
 #messages{

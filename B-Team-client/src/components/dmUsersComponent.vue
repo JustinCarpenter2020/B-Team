@@ -6,13 +6,13 @@
       </h4>
       <div class="small-cards mt-5 border-transparentWhite h-25 d-flex align-items-center" v-for="c in dmProp" :key="c.id">
         <p class="mx-2 my-0" v-if="account.id == c.user1" @click="getMessages(c.user2)">
-          <img class="img-fluid rounded" :src="c.receiver.picture" alt="">
+          <img class="profile-img rounded" :src="c.receiver.picture" alt="">
           <span class="ml-3">
             {{ c.receiver.name.split("@")[0] }}
           </span>
         </p>
         <p class="mx-2 my-0" v-else @click="getMessages(c.user1)">
-          <img class="img-fluid rounded" :src="c.sender.picture" alt="">
+          <img class="profile-img rounded" :src="c.sender.picture" alt="">
           <span class="ml-3">
             {{ c.sender.name.split("@")[0] }}
           </span>
@@ -49,6 +49,11 @@ export default {
 <style lang="scss" scoped>
 .scroll{
   overflow-y: scroll;
+}
+
+.profile-img{
+  height: 15vh;
+  width: 15vh;
 }
 .height{
   height: 80vh;

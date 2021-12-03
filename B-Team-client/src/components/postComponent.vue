@@ -24,21 +24,32 @@
             </div>
           </div>
           <div class="row align-items-center">
-            <div class="col-12 my-3 text-right">
+            <!-- <div class="col-12 my-3 text-right">
               <span class="opacity">{{ time() }}</span>
-            </div>
+            </div> -->
             <div class="col-md-2 col-3" v-if="postProp.creator">
               <router-link :to="{name: 'Profile', params: {id: postProp.creator.id}}">
                 <img class="profile" :src="postProp.creator.picture" alt="">
               </router-link>
             </div>
-            <div class="col-7  d-flex align-self-center">
-              <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
-                <h4 class="card-title post-text">
-                  {{ postProp.body }}
-                </h4>
-              </router-link>
+            <div class="col-9  d-flex align-self-center justify-content-between">
+              <p class="card-title post-text" v-if="postProp.creator.name">
+                {{ postProp.creator.name.split('@')[0] }}
+                <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
+                  <p class="card-title post-text">
+                    {{ postProp.body }}
+                  </p>
+                </router-link>
+              </p>
+              <span class="opacity mx-2">{{ time() }}</span>
             </div>
+            <!-- <div class="col-6 text-center">
+              <router-link :to="{ name: 'postDetails', params: {id: postProp.id}}">
+                <p class="card-title post-text">
+                  {{ postProp.body }}
+                </p>
+              </router-link>
+            </div> -->
             <!-- <div class="col-3 d-none col-md-block text-right">
               <span class="opacity">{{ time() }}</span>
             </div> -->

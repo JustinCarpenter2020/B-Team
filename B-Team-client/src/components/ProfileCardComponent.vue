@@ -162,6 +162,8 @@ export default {
   transform: translateY(-80px);
   border-radius: 50%;
   border: 4px solid black;
+  height: 16vh;
+  width: 16vh;
 }
 
 .btn{
