@@ -13,7 +13,6 @@ export default {
     return {
       attachGif() {
         AppState.activeGif = props.gif.url
-        console.log(props.gif.url)
       }
     }
   }

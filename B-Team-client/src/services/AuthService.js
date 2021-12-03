@@ -5,7 +5,6 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { connectionsService } from './ConnectionsService'
-import { messagesService } from './MessagesService'
 import { socketService } from './SocketService'
 
 export const AuthService = initialize({
