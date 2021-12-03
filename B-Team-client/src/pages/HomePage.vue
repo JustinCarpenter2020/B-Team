@@ -10,7 +10,7 @@
           <postComponent v-for="post in posts" :key="post.id" :post-prop="post" />
         </div>
       </div>
-      <div class="col-3 d-none d-md-block scroll scrollbar">
+      <div class="col-3 d-none d-md-block side-scroll scrollbar">
         <trendingComponent />
         <followComponent />
       </div>
@@ -50,10 +50,16 @@ export default {
 
 @media only screen and (min-width: 600px) {
 .scroll{
-  height: 68vh;
+  height: 66vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 }
 
+.side-scroll{
+  height: 84vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 </style>

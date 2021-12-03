@@ -1,7 +1,7 @@
 <template>
   <div class="card height mt-4 text-light border-transparentWhite">
     <img class="card-img-top" src="holder.js/100x180/" alt="">
-    <div class="card-body scroll scrollbar">
+    <div class="card-body scroll scrollbar" v-if="dmProp.length > 0">
       <h4 class="card-title">
       </h4>
       <div class="small-cards mt-5 border-transparentWhite h-25 d-flex align-items-center" v-for="c in dmProp" :key="c.id">
@@ -18,6 +18,9 @@
           </span>
         </p>
       </div>
+    </div>
+    <div class="card-body text-light text-center">
+      <p>You Don't Follow Any Accounts...</p>
     </div>
   </div>
 </template>
