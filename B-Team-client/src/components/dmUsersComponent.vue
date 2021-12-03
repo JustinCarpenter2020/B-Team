@@ -19,7 +19,7 @@
         </p>
       </div>
     </div>
-    <div class="card-body text-light text-center">
+    <div class="card-body text-light text-center" v-else>
       <p>You Don't Follow Any Accounts...</p>
     </div>
   </div>
