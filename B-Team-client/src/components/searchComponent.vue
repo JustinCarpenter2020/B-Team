@@ -2,7 +2,9 @@
   <div class="my-4 row" v-if="account._id">
     <div class="col-2 d-flex justify-content-center d-none col-md-block">
       <div>
-        <img class="profilePic" :src="account.picture" alt="">
+        <router-link :to="{name: 'Profile', params: {id: account.id}}">
+          <img class="profilePic" :src="account.picture" alt="">
+        </router-link>
       </div>
     </div>
     <div class="col-md-7 col-6 mx-0">

@@ -1,13 +1,18 @@
 <template>
-  <div v-for="c in dmProp" :key="c.id" class="text-light col-12 border-transparentWhite border-right-none border-left-none" @click="getMessages(c.user2)">
-    <div class="row" v-if="account.id == c.user1">
-      <div class="col-4">
-        <img class="circle my-2" :src="c.receiver.picture" alt="">
-      </div>
-      <div class="col-6 text-light">
-        {{ c.receiver.name.split("@")[0] }}
+  <div v-if="dmProp.length > 0" class="text-light col-12 border-transparentWhite border-right-none border-left-none">
+    <div v-for="c in dmProp" :key="c.id" class="" @click="getMessages(c.user2)">
+      <div class="row align-items-center" v-if="account.id == c.user1">
+        <div class="col-4">
+          <img class="circle my-2" :src="c.receiver.picture" alt="">
+        </div>
+        <div class="col-6 text-light">
+          {{ c.receiver.name.split("@")[0] }}
+        </div>
       </div>
     </div>
+  </div>
+  <div v-else class="text-light text-center w-100">
+    <p>You Don't Follow Any Accounts...</p>
   </div>
 </template>
 <script>

@@ -11,7 +11,7 @@
           <button class="btn btn-outline-info m-2" v-if="!followedIds.includes(profile.id)" @click="follow(profile.id)">
             Follow
           </button>
-          <button class="btn btn-outline-danger m-2" v-else @click="unfollow(profile.id)">
+          <button class="btn btn-outline-danger m-2" v-else @click="unFollow(profile.id)">
             UnFollow
           </button>
         </div>
@@ -84,9 +84,12 @@
                      aria-describedby="helpId"
                      placeholder="Profile pic..."
               >
-              <div class="w-100 text-center my-2">
-                <button type="submit" class="btn btn-primary mt-3 w-50">
+              <div class="w-100  my-2 d-flex justify-content-around">
+                <button type="submit" class="btn btn-primary mt-3 w-25">
                   Save
+                </button>
+                <button type="button" @click="logout" class="btn btn-primary mt-3 w-25">
+                  Logout
                 </button>
               </div>
             </form>
@@ -104,6 +107,9 @@ import { logger } from '../utils/Logger'
 import { connectionsService } from '../services/ConnectionsService'
 import { accountService } from '../services/AccountService'
 import $ from 'jquery'
+import { AuthService } from '../services/AuthService'
+import Notification from '../utils/Notification'
+
 export default {
   setup() {
     const followedIds = ref([])
@@ -129,6 +135,11 @@ export default {
           logger.error(error)
         }
         // Notification.toast('You must buy premium for that feature', 'info')
+      },
+      async logout() {
+        if (await Notification.confirmAction('Are you sure you want to log out', 'you will be missed', 'info', 'logout')) {
+          AuthService.logout({ returnTo: window.location.origin })
+        }
       },
       async unFollow(id) {
         try {

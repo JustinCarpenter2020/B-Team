@@ -28,7 +28,7 @@
           />
         </p>
       </router-link>
-      <i class="fas fa-user fa-2x" title="profile" v-else></i>
+      <i class="fas fa-user fa-2x" title="profile" v-else @click="login"></i>
       <router-link class="decor" :to="{ name: 'DmPage' }">
         <i class="far fa-envelope fa-2x" title="messages"></i>
       </router-link>
@@ -78,7 +78,7 @@ p{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  bottom: 15%;
+  bottom: 12%;
   right: 5%;
   background-color: $dark;
   width: 80px;
